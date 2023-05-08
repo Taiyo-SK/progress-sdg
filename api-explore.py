@@ -15,7 +15,9 @@ for goal in goals:
     uri = goal['uri']
     print(f'{code}. {name}: \n {descr} \n {uri}')
 
-# payload = {'goal': 'years'}
+
+### TO DO###
+# add goals to database (requires set up of database, crud, seed, etc.)
 
 # res = requests.post('https://unstats.un.org/SDGAPI/v1/sdg/DataAvailability/GetWorldbyGoal', data=payload)
 # print(res.text)
