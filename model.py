@@ -1,23 +1,39 @@
 """Models for SDG progress app."""
 
-from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
 class Goal(db.Model):
+    """A Sustainable Development Goal."""
 
-    code = db.Column()'code'
-    name = db.Column()'title'
-    descr = db.Column()'description'
-    uri = db.Column()'uri'
+    __tablename__ = 'goals'
+
+    code = db.Column(db.Integer, primary_key=True) #'code'
+    title = db.Column(db.String(150)) # 'title'
+    description = db.Column(db.Text) #'description'
+    uri = db.Column(db.String(20)) #'uri'
+
+    progress = db.relationship('Progress', back_populates='goals')
+
+    def __repr__(self):
+        return f"<Goal {self.code}: {self.title}>"
 
 class Progress(db.Model):
     """A Sustainable Development Goal's most recent progress."""
 
-    goal_id = db.Column(db.Integer, primary_key=True)
-    most_recent_data = db.Column(db.Float)
-    progress = db.Column(db.Float)
+    __tablename__ = 'progress_data'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    code = db.Column(db.Integer, db.ForeignKey('Goal.code')) # 'goal'
+    years = db.Column(db.Float) # 'years'
+    percentage = db.Column(db.Float) # 'percentage'
+    deadline = db.Column(db.Integer)
+
+    goals = db.relationship('Goal', back_populates='progress_data')
+
+    def __repr__(self):
+        return f"<Progress for SDG {self.code}: {self.percentage}% over >"
 
 def connect_to_db(flask_app, db_uri='postgresql:///sdgprogress', echo=True):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
