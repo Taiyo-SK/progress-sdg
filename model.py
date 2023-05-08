@@ -10,11 +10,11 @@ class Goal(db.Model):
     __tablename__ = 'goals'
 
     code = db.Column(db.Integer, primary_key=True) #'code'
-    title = db.Column(db.String(150)) # 'title'
+    title = db.Column(db.String(200)) # 'title'
     description = db.Column(db.Text) #'description'
     uri = db.Column(db.String(20)) #'uri'
 
-    progress = db.relationship('Progress', back_populates='goals')
+    progress = db.relationship('Progress', back_populates='goal')
 
     def __repr__(self):
         return f"<Goal {self.code}: {self.title}>"
@@ -25,12 +25,12 @@ class Progress(db.Model):
     __tablename__ = 'progress_data'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    code = db.Column(db.Integer, db.ForeignKey('Goal.code')) # 'goal'
+    code = db.Column(db.Integer, db.ForeignKey('goals.code')) # 'goal'
     years = db.Column(db.Float) # 'years'
     percentage = db.Column(db.Float) # 'percentage'
     deadline = db.Column(db.Integer)
 
-    goals = db.relationship('Goal', back_populates='progress_data')
+    goal = db.relationship('Goal', back_populates='progress')
 
     def __repr__(self):
         return f"<Progress for SDG {self.code}: {self.percentage}% over >"
