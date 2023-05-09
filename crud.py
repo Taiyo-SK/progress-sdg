@@ -42,5 +42,5 @@ def get_progress_by_goal(code):
 
 
 if __name__ == '__main__':
-    connect_to_db(app)
     from server import app
+    connect_to_db(app)

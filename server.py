@@ -31,13 +31,13 @@ def view_goals():
     return render_template('goals.html', goals=goals)
 
 
-@app.route('/goal_details/<code>')
+@app.route('/goals/<code>')
 def show_goal(code):
     """Show details on a particular goal."""
 
-    goal = crud.get_progress_by_goal()
+    progress = crud.get_progress_by_goal(code)
 
-    return render_template('goal_details.html', goal=goal)
+    return render_template('goal_details.html', progress=progress)
 
 if __name__ == '__main__':
     connect_to_db(app)

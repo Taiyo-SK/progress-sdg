@@ -1,14 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ goal_progress.code }} - Global Summary {% endblock %}
+{% block title %}{{ progress.code }} - Global Summary {% endblock %}
 
 {% block body %}
-<h1>{{ goal_progress.title }}</h1>
-
-<!-- <img src="{{ goal.img_path }}"> -->
+<h1>Progress for SDG #{{ progress.code }}</h1>
 
 <p>
-    {{ goal_progress.description }}
+    {{ progress.progress }}% achieved over {{ progress.years_to_date}} years.
 </p>
 
 {% endblock %}
