@@ -38,7 +38,9 @@ def get_goals():
 def get_progress_by_goal(code):
     """Return the most up to date progress for a specific goal."""
 
-    return Progress.query.get(code)
+    # return db.session.query(Progress, Goal).get(code)
+
+    return Progress.query.filter_by(code=code).one()
 
 
 if __name__ == '__main__':
