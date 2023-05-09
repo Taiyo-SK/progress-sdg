@@ -46,13 +46,13 @@ with open('static/data/progress.json') as w:
 
 progress_in_db = []
 for entry in progress_list:
-    goal, years, percentage = (
+    code, years_to_date, progress = (
         entry['goal'],
         entry['years'],
         entry['percentage'],
         )
 
-    db_progress_entry = crud.enter_progress_data(goal, years, percentage)
+    db_progress_entry = crud.enter_progress_data(code, years_to_date, progress)
     progress_in_db.append(db_progress_entry)
 
 model.db.session.add_all(progress_in_db) 

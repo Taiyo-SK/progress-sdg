@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ goal.goal_id }} - Global Summary {% endblock %}
+{% block title %}{{ goal_progress.code }} - Global Summary {% endblock %}
 
 {% block body %}
-<h1>{{ goal.name }}</h1>
+<h1>{{ goal_progress.title }}</h1>
 
-<img src="{{ goal.img_path }}">
+<!-- <img src="{{ goal.img_path }}"> -->
 
 <p>
-    {{ goal.description }}
+    {{ goal_progress.description }}
 </p>
 
 {% endblock %}

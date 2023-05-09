@@ -26,14 +26,15 @@ class Progress(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     code = db.Column(db.Integer, db.ForeignKey('goals.code')) # 'goal'
-    years = db.Column(db.Float) # 'years'
-    percentage = db.Column(db.Float) # 'percentage'
+    years_to_date = db.Column(db.Float) # 'years'
+    progress = db.Column(db.Float) # 'percentage'
     deadline = db.Column(db.Integer)
 
     goal = db.relationship('Goal', back_populates='progress')
 
     def __repr__(self):
-        return f"<Progress for SDG {self.code}: {self.percentage}% over >"
+        return f"""<Progress for SDG {self.code}: {self.progress}%>"""
+
 
 def connect_to_db(flask_app, db_uri='postgresql:///sdgprogress', echo=True):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri

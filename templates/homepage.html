@@ -4,12 +4,6 @@
 {% block body %}
     <h1>Welcome to Taiyo's project.</h1>
 
-    <h2>List of Goals</h2>
-    <ul>
-        {% for goal in goals %}
-        <li><a href="/goals/{{ goal.goal_id }}">{{ goal.goal_id }}
-
-        </a>
-        </li> <!--want to iterate over and create (sharkwords)-->
-    </ul>
+    <h2>Navigation</h2>
+        <div><a href="/goals">View all Sustainable Development Goals</a></div>
 {% endblock %}
