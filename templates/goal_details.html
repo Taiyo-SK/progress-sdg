@@ -7,7 +7,8 @@
 {% endblock %}
 
 {% block body %}
-<h1>Progress for SDG #{{ progress.code }}</h1>
+
+<h1>Progress for SDG <span id="goalcode">{{ progress.code }}</span></h1>
 
 
 <h2>{{ progress.goal.title }}</h2>
@@ -17,10 +18,12 @@
         {{ progress.progress }}% achieved over {{ progress.years_to_date}} years.
     </h3>
     <canvas id="progress-chart"></canvas>
+    <canvas id="progress-chart-ajax"></canvas>
+
     <div>
         {{ progress.goal.description }}
     </div>
-    <img src="/static/icons/E-WEB-Goal-0{{ progress.code }}.png" alt="icon for SDG {{ progress.code }}">
+    <img src="/static/icons/E-WEB-Goal-{{ progress.code }}.png" alt="icon for SDG {{ progress.code }}">
 </p>
 
 {% endblock %}

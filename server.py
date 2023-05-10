@@ -1,6 +1,6 @@
 """Server for SDGs progress app."""
 
-from flask import Flask, render_template, request, flash, session, redirect
+from flask import Flask, render_template, request, flash, session, redirect, jsonify
 from jinja2 import StrictUndefined
 
 ## Local Imports
@@ -24,7 +24,7 @@ def homepage():
 
 @app.route('/goals')
 def view_goals():
-    """View all goals."""
+    """View all SDGs."""
 
     goals = crud.get_goals()
 
@@ -33,11 +33,33 @@ def view_goals():
 
 @app.route('/goals/<code>')
 def show_goal(code):
-    """Show details on a particular goal."""
+    """Show details on a particular SDG."""
 
     progress = crud.get_progress_by_goal(code)
 
     return render_template('goal_details.html', progress=progress)
+
+
+@app.route('/progress_data.json/<code>')
+def get_goal_progress_data(code):
+    """Get progress data for a specific SDG.
+
+    Progress is defined as a percentage.
+
+    Years_to_date represents the number of years since the SDG began,
+    up until progress data was last provided.
+    """
+
+    # 1. Get progress data using crud function
+    ## This is returned as SQLA object--need to turn it into a dictionary
+    ## Turn Python dict into JSON
+    progress_data = crud.get_progress_by_goal(code)
+
+    return jsonify(progress=progress_data.progress,
+            ytd = progress_data.years_to_date)
+
+    # json_data = {'progress': progress, 'ytd': ytd}
+
 
 if __name__ == '__main__':
     connect_to_db(app)
