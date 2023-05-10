@@ -2,6 +2,10 @@
 
 {% block title %}{{ progress.code }} - Global Summary {% endblock %}
 
+{% block head %} 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+{% endblock %}
+
 {% block body %}
 <h1>Progress for SDG #{{ progress.code }}</h1>
 
@@ -12,10 +16,15 @@
     <h3>
         {{ progress.progress }}% achieved over {{ progress.years_to_date}} years.
     </h3>
+    <canvas id="progress-chart"></canvas>
     <div>
         {{ progress.goal.description }}
     </div>
     <img src="/static/icons/E-WEB-Goal-0{{ progress.code }}.png" alt="icon for SDG {{ progress.code }}">
 </p>
 
+{% endblock %}
+
+{% block after_body %}
+    <script src="/static/js/charts.js"></script>
 {% endblock %}
