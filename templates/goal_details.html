@@ -20,10 +20,18 @@
         style="max-width:100%; max-height:100%;">
     </div>
     <h3>
-        {{ progress.progress }}% achieved over {{ progress.years_to_date}} years.
+        {{ progress.progress }}% achieved over {{ progress.years_to_date}} years (starting in 2015).
     </h3>
     <div style="width: 500px;">
+        <canvas id="test-line"></canvas>
+    <div style="width: 500px;">
+        <canvas id="burndown"></canvas>
+    </div>
+    <div style="width: 500px;">
         <canvas id="progress-bar"></canvas>
+    </div>
+    <div style="width: 500px;">
+        <canvas id="time-pie"></canvas>
     </div>
     <div>
         {{ progress.goal.description }}
