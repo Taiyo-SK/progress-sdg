@@ -14,16 +14,20 @@
 <h2>{{ progress.goal.title }}</h2>
 
 <p>
+    <div style="width:150px;">
+        <img src="/static/icons/E-WEB-Goal-{{ progress.code }}.png" 
+        alt="icon for SDG {{ progress.code }}"
+        style="max-width:100%; max-height:100%;">
+    </div>
     <h3>
         {{ progress.progress }}% achieved over {{ progress.years_to_date}} years.
     </h3>
-    <canvas id="progress-chart"></canvas>
-    <canvas id="progress-chart-ajax"></canvas>
-
+    <div style="width: 500px;">
+        <canvas id="progress-bar"></canvas>
+    </div>
     <div>
         {{ progress.goal.description }}
     </div>
-    <img src="/static/icons/E-WEB-Goal-{{ progress.code }}.png" alt="icon for SDG {{ progress.code }}">
 </p>
 
 {% endblock %}
