@@ -70,43 +70,71 @@ fetch(`/progress_data.json/${goalcode}`)
 
     // Burndown chart of both data points (progress and years)
 
-    console.log(progress_data)
+    // let burn_progress = progress_data.progress;
+    // let burn_years = progress_data.years_from_start;
 
-    new Chart(document.querySelector('#burndown'), {
-        type: 'line',
-        data: {
-            datasets: [
-                {
-                    label: 'baseline',
-                    data: {15: 0, 30: 100}
-                },
-                // {
-                //     label: 'actual',
-                //     data: {(15 + progress_data.years_from_start): progress_data.progress}
-                // },
-            ],
-        },
-        options: {
-            scales: {
-                x: {
-                    // min: 2015,
-                    // max: 2030
-                },
-                y: {}
-            },
-        }
-    });
-});
+//     new Chart(document.querySelector('#burndown'), {
+//         type: 'line',
+//         data: {
+//             datasets: [{
+//                 label: 'baseline',
+//                 data: [
+//                     {'x': 15, 'y': 0},
+//                     {'x': 30, 'y': 100}
+//                 ]},
+//                 {
+//                 label: 'actual',
+//                 data: [
+//                     {'x': 15, 'y': 0,},
+//                     {'x': 19, 'y': 50}
+//                 ]}  
+//                 ]
+//             }
+//     });
+// });
 
 
-new Chart(document.querySelector('#test-line'), {
-    type: 'line',
-    data: {
-        datasets: [{
-            label: 'test',
-            data: [{x: '2016-12-25', y: 20}, {x: '2016-12-26', y: 10}]
-        }]
-    },
-    options: {
-    }
+// new Chart(document.querySelector('#test-line'), {
+//     type: 'line',
+//     data: {
+//         datasets: [{
+//             label: 'test',
+//             data: {
+//                 5: 20,
+//                  10: 30
+//                 }
+//         },
+//         {
+//             label: 'test2',
+//             data: {
+//                 1: 3,
+//                 7: 14
+//             }
+//         }
+//         ]
+//     },
+//     options: {
+//         scales: {
+//             y: {
+//                 beginAtZero: true
+//             }
+//         }
+//     }
+// });
+
+// // test custom properties chart
+
+// new Chart(document.querySelector('#custom-objs'), {
+//     type: 'bar',
+//     data: {
+//       datasets: [{
+//         data: [{id: 'Sales', nested: {value: 1500}}, {id: 'Purchases', nested: {value: 500}}]
+//       }]
+//     },
+//     options: {
+//       parsing: {
+//         xAxisKey: 'id',
+//         yAxisKey: 'nested.value'
+//       }
+//     }
 });
