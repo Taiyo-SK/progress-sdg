@@ -1,10 +1,9 @@
 """CRUD functions for SDG progress app."""
 
-from model import db, Goal, Progress, connect_to_db
+from model import db, Goal, Progress, Indicator, connect_to_db
 
 
 ### CREATE functions
-
 
 def create_goal(code, title, description, uri):
     """Create and return a new SDG."""
@@ -15,6 +14,7 @@ def create_goal(code, title, description, uri):
                 uri=uri)
 
     return goal
+
 
 def enter_progress_data(code, years_to_date, progress, deadline=15):
     """Create and return a new entry for goal progress."""
@@ -27,6 +27,15 @@ def enter_progress_data(code, years_to_date, progress, deadline=15):
     return progress_entry
 
 
+def enter_ind_data(id, goal_code, description, progress):
+    """Create and return a new entry for an indicator and its progress."""
+
+    ind_entry = Indicator(id=id,
+                          goal_code=goal_code,
+                          description=description,
+                          progress=progress)
+
+    return ind_entry
 ### GET functions
 
 

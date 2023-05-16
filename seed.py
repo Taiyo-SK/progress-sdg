@@ -2,7 +2,7 @@
 
 import os
 import json
-# import api_requests 
+import api_requests 
 ## decided it was better to save api output as static json file
 
 import crud
@@ -39,7 +39,7 @@ model.db.session.add_all(goals_in_db)
 model.db.session.commit()
 
 
-### 2. Progress data
+### 2. Goal progress data
 
 with open('static/data/progress.json') as w:
     progress_list = json.loads(w.read())
@@ -56,4 +56,23 @@ for entry in progress_list:
     progress_in_db.append(db_progress_entry)
 
 model.db.session.add_all(progress_in_db) 
+model.db.session.commit()
+
+### 3. Indicators and progress data
+
+ind_input = api_requests.ind_progress_data(api_requests.ind_progress_list)
+
+ind_in_db = []
+for entry in ind_input:
+    id, goal_code, description, progress = (
+        entry['code'],
+        entry['goal'],
+        entry['description'],
+        entry['percentage']
+    )
+
+    db_ind_entry = crud.enter_ind_data(id, goal_code, description, progress)
+    ind_in_db.append(db_ind_entry)
+
+model.db.session.add_all(ind_in_db)
 model.db.session.commit()

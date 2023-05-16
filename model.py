@@ -46,9 +46,9 @@ class Indicator(db.Model):
 
     id = db.Column(db.String, primary_key=True) # 'code', 
                                     #  a string of 3 period-separated numbers
-    goalId = db.Column(db.Integer, db.ForeignKey('goals.code'))
+    goal_code = db.Column(db.Integer, db.ForeignKey('goals.code'))
     description = db.Column(db.Text) # 'description'
-    ind_prog = db.Column(db.Float) # 'percentage'
+    progress = db.Column(db.Float) # 'percentage'
 
     goal = db.relationship('Goal', back_populates='indicator')
 
