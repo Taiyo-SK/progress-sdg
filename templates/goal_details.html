@@ -7,41 +7,68 @@
 {% endblock %}
 
 {% block body %}
+<div class="container-fluid">
 
-<h1>Progress for SDG <span id="goalcode">{{ progress.code }}</span></h1>
+    <!-- Row 1: SDG name and icon -->
+    <div class="row align-items-center">
+        <div class="col-2">
+            <img src="/static/icons/E-WEB-Goal-{{ progress.code }}.png" 
+            alt="icon for SDG {{ progress.code }}"
+            style="max-width:100%; max-height:100%;">
+        </div>
+        <div class="col-10">
+            <h1>Progress for SDG <span id="goalcode">{{ progress.code }}</span></h1>
+            <h2>{{ progress.goal.title }}</h2>
+        </div>
+        
+    </div>
+    
+    <!-- Row 2: summary of work and time remaining-->
+    <div class="row" id="summary-row">
+        <div class="col">
+            {{ 100 - progress.progress }}% left
+        </div>
+        <div class="col">
+            {{ 15 - progress.years_to_date }} out of 15 years left
+        </div>
+    </div>
 
+    <!-- Row 3: progress bar and time remaining charts -->
+    <div class="row align-items-center" id="charts-row">
+        <div class="col-6">
+            <canvas id="progress-bar"></canvas>
+        </div>
+        <div class="col-6">
+            <canvas id="time-pie"></canvas>
+        </div>
+    
+    <!-- Row 4: summary of progress percentage and years -->
+    <div class="row">
+        <div class="col">
+            {{ progress.progress }}% complete
+        </div>
+        <div class="col">
+            achieved over {{ progress.years_to_date }} years (starting in 2015).
+        </div>
+    </div>
 
-<h2>{{ progress.goal.title }}</h2>
-
-<p>
-    <div style="width:150px;">
-        <img src="/static/icons/E-WEB-Goal-{{ progress.code }}.png" 
-        alt="icon for SDG {{ progress.code }}"
-        style="max-width:100%; max-height:100%;">
+        <!-- <div style="width: 500px;">
+            <canvas id="test-line"></canvas>
+        </div>
+        <div style="width: 500px;">
+            <canvas id="custom-objs"></canvas>
+        </div>
+        <div style="width: 500px;">
+            <canvas id="burndown"></canvas>
+        </div> -->
+    <!-- Row 5: sdg description -->
+    <div class="row">
+        <div class="col">
+            {{ progress.goal.description }}
+        </div>
     </div>
-    <h3>
-        {{ progress.progress }}% achieved over {{ progress.years_to_date}} years (starting in 2015).
-    </h3>
-    <!-- <div style="width: 500px;">
-        <canvas id="test-line"></canvas>
-    </div>
-    <div style="width: 500px;">
-        <canvas id="custom-objs"></canvas>
-    </div>
-    <div style="width: 500px;">
-        <canvas id="burndown"></canvas>
-    </div> -->
-    <div style="width: 500px;">
-        <canvas id="progress-bar"></canvas>
-    </div>
-    <div style="width: 500px;">
-        <canvas id="time-pie"></canvas>
-    </div>
-    <div>
-        {{ progress.goal.description }}
-    </div>
-</p>
-<a href="/">Return to homepage</a>
+</div>
+</div>
 {% endblock %}
 
 {% block after_body %}

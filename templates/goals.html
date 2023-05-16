@@ -6,11 +6,16 @@
 <h1>List of Goals</h1>
 <ul>
     {% for goal in goals %}
-    <li><a href="/goals/{{ goal.code }}">
-        {{ goal.code }}. {{ goal.title }}
+    <li class="goal-row">
+        <div class="col">>
+            <img src="" alt="">
+        </div>
+        <div class="col">
+            <a href="/goals/{{ goal.code }}">
+                {{ goal.code }}. {{ goal.title }}
+            </div>
     </a>
     </li>
     {% endfor %} 
 </ul>
-<a href="/">Return to homepage</a>
 {% endblock %}

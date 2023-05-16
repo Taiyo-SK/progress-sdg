@@ -16,8 +16,11 @@ class Goal(db.Model):
 
     progress = db.relationship('Progress', back_populates='goal')
 
+    indicator = db.relationship('Indicator', back_populates='goal')
+
     def __repr__(self):
         return f"<Goal {self.code}: {self.title}>"
+
 
 class Progress(db.Model):
     """A Sustainable Development Goal's most recent progress."""
@@ -35,6 +38,22 @@ class Progress(db.Model):
     def __repr__(self):
         return f"""<Progress for SDG {self.code}: {self.progress}%>"""
 
+
+class Indicator(db.Model):
+    """An indicator for a specific Sustainable Development Goal."""
+
+    __tablename__ = 'indicators'
+
+    id = db.Column(db.String, primary_key=True) # 'code', 
+                                    #  a string of 3 period-separated numbers
+    goalId = db.Column(db.Integer, db.ForeignKey('goals.code'))
+    description = db.Column(db.Text) # 'description'
+    ind_prog = db.Column(db.Float) # 'percentage'
+
+    goal = db.relationship('Goal', back_populates='indicator')
+
+    def __repr__(self):
+        return f"""<Indicator {self.id}: {self.description}"""
 
 def connect_to_db(flask_app, db_uri='postgresql:///sdgprogress', echo=True):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
