@@ -22,6 +22,9 @@ def homepage():
     return render_template('homepage.html')
 
 
+### Goals
+
+
 @app.route('/goals')
 def view_goals():
     """View all SDGs."""
@@ -36,8 +39,9 @@ def show_goal(code):
     """Show details on a particular SDG."""
 
     progress = crud.get_progress_by_goal(code)
+    indicators = crud.get_indicators_by_goal(code)
 
-    return render_template('goal_details.html', progress=progress)
+    return render_template('goal_details.html', progress=progress, indicators=indicators)
 
 
 @app.route('/progress_data.json/<code>')
@@ -59,6 +63,38 @@ def get_goal_progress_data(code):
             ytd = progress_data.years_to_date)
 
     # json_data = {'progress': progress, 'ytd': ytd}
+
+
+### Indicators
+
+
+@app.route('/indicators')
+def view_indicators():
+    """View all SDG indicators."""
+
+    indicators = crud.get_indicators()
+
+    return render_template('indicators.html', indicators=indicators)
+
+
+@app.route('/indicators/<id>')
+def show_indicator(id):
+    """Show progress and description of a specific indicator."""
+
+    ind_details = crud.get_details_by_indicator(id)
+
+    return render_template('indicator_details.html', ind_details=ind_details)
+
+
+@app.route('/indicator_data.json/<id>')
+def get_indicator_progress_data(id):
+    """Get progress data for a specific indicator.
+    
+    Progress is defined as a percentage."""
+
+    progress_data = crud.get_details_by_indicator(id)
+
+    return jsonify(progress=progress_data.progress)
 
 
 if __name__ == '__main__':

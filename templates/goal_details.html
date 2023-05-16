@@ -17,14 +17,22 @@
             style="max-width:100%; max-height:100%;">
         </div>
         <div class="col-10">
-            <h1>Progress for SDG <span id="goalcode">{{ progress.code }}</span></h1>
+            <h1>Progress for SDG <span id="goal-code">{{ progress.code }}</span></h1>
             <h2>{{ progress.goal.title }}</h2>
         </div>
-        
     </div>
-    
-    <!-- Row 2: summary of work and time remaining-->
-    <div class="row" id="summary-row">
+    <!-- End Row 1 -->
+
+    <!-- Row 2: sdg description -->
+    <div class="row">
+        <div class="col">
+            {{ progress.goal.description }}
+        </div>
+    </div>
+    <!-- End Row 2 -->
+
+    <!-- Row 3: summary of work and time remaining-->
+    <div class="row">
         <div class="col">
             {{ 100 - progress.progress }}% left
         </div>
@@ -32,16 +40,8 @@
             {{ 15 - progress.years_to_date }} out of 15 years left
         </div>
     </div>
+    <!-- End Row 3 -->
 
-    <!-- Row 3: progress bar and time remaining charts -->
-    <div class="row align-items-center" id="charts-row">
-        <div class="col-6">
-            <canvas id="progress-bar"></canvas>
-        </div>
-        <div class="col-6">
-            <canvas id="time-pie"></canvas>
-        </div>
-    
     <!-- Row 4: summary of progress percentage and years -->
     <div class="row">
         <div class="col">
@@ -51,23 +51,46 @@
             achieved over {{ progress.years_to_date }} years (starting in 2015).
         </div>
     </div>
+    <!-- End Row 4 -->
 
-        <!-- <div style="width: 500px;">
-            <canvas id="test-line"></canvas>
-        </div>
-        <div style="width: 500px;">
-            <canvas id="custom-objs"></canvas>
-        </div>
-        <div style="width: 500px;">
-            <canvas id="burndown"></canvas>
-        </div> -->
-    <!-- Row 5: sdg description -->
+    <!-- Row 5: progress bar and time remaining charts -->
     <div class="row">
         <div class="col">
-            {{ progress.goal.description }}
+            <canvas id="progress-bar"></canvas>
+        </div>
+        <div class="col">
+            <canvas id="time-pie"></canvas>
+        </div>
+        <!-- <div class="col">
+            <canvas id="test-line"></canvas>
+        </div>
+        <div class="col">
+            <canvas id="custom-objs"></canvas>
+        </div>
+        <div class="col">
+            <canvas id="burndown"></canvas>
+        </div> -->
+    </div>
+    <!-- End Row 5 -->
+
+    <!-- Row 6: indicators -->
+    <div class="row">
+        <div class="col">
+            <h1>List of Indicators</h1>
+            <ul>
+                {% for indicator in indicators %}
+                <li>
+                    <div>
+                        {{ indicator.id }}. 
+                    </div>
+                    {{ indicator.description }}
+                </li>
+                {% endfor %} 
+            </ul>
         </div>
     </div>
-</div>
+    <!-- End Row 6 -->
+
 </div>
 {% endblock %}
 
