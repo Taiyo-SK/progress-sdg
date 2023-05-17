@@ -139,12 +139,13 @@ fetch(`/progress_data.json/${goalcode}`)
 //     }
 });
 
+
 // AJAX fetch for indicator progress data
 
-// const ind_id = document.querySelector('#indicator-id').innerHTML;
-// console.log(ind_id);
+// const ind_id2 = document.querySelector('#indicator-id-2').innerHTML;
+// console.log(ind_id2);
 
-// fetch(`/progress_data.json/${ind_id}`)
+// fetch(`/indicator_data.json/${ind_id2}`)
 // .then(response => response.json())
 // .then(responseJson => {
 //     const progress_data = {
@@ -152,7 +153,7 @@ fetch(`/progress_data.json/${goalcode}`)
 //         years_from_start: responseJson.ytd
 //     };
 
-//     new Chart(document.querySelector('#ind-progress-bar'), {
+//     new Chart(document.querySelector('#ind-progress-bar-2'), {
 //         type: 'bar',
 //         data: {
 //             labels: [''],

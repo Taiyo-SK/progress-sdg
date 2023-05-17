@@ -46,6 +46,12 @@ def get_goals():
     return Goal.query.all()
 
 
+def get_progress(): # may not need? tried only for fixing the goals cards
+    """Return all progress for all goals."""
+
+    return Progress.query.all()
+
+
 def get_progress_by_goal(code):
     """Return the most up to date progress for a specific goal."""
 

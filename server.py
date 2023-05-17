@@ -30,8 +30,9 @@ def view_goals():
     """View all SDGs."""
 
     goals = crud.get_goals()
+    # progress = crud.get_progress() # might not need? trying to fix the goal cards
 
-    return render_template('goals.html', goals=goals)
+    return render_template('goals.html', goals=goals) #progress=progress
 
 
 @app.route('/goals/<code>')

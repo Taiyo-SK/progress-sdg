@@ -3,19 +3,29 @@
 {% block title %}Sustainable Development Goals{% endblock %}
 
 {% block body %}
-<h1>List of Goals</h1>
-<ul>
-    {% for goal in goals %}
-    <li class="goal-row">
-        <div class="col">>
-            <img src="" alt="">
-        </div>
+<div class="container pt-1">
+    <div class="row">
+        <h1>List of Goals</h1>
+    </div>
+
+    <div class="row gy-5 row-cols-6">
+        {% for goal in goals %}
         <div class="col">
-            <a href="/goals/{{ goal.code }}">
-                {{ goal.code }}. {{ goal.title }}
+            <div class="card">
+                <a href="/goals/{{ goal.code }}">
+                    <img src="/static/icons/E-WEB-Goal-{{ goal.code }}.png" 
+                    alt="View progress details for sdg {{ goal.title }}" class="goal-icon"/>
+                </a>
+                <div class="card-body">
+                    <h5 class="card-text">
+                        {% for progress in goal.progress %}
+                        {{  progress.progress | round(2) }}% complete 
+                        {% endfor %}
+                    </h5>
+                </div>
             </div>
-    </a>
-    </li>
-    {% endfor %} 
-</ul>
+        </div>
+        {% endfor %} 
+    </div>
+</div>
 {% endblock %}

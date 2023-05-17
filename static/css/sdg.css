@@ -1,0 +1,34 @@
+/* Goal details page */
+
+#summary-row {
+    height: 50px;
+}
+
+.container {
+    font-family: 'Roboto', sans-serif;
+}
+
+#brand-icon {
+    width: 25px;
+    height: 25px;
+}
+
+#progress-bar {
+    height:100px;
+    width: 100px;
+}
+.chart-container {
+    width: 50%;
+    height: 50%;
+    margin: auto;
+}
+
+.goal-icon {
+    height: 100%;
+    width: 100%;
+}
+
+.chart-header {
+    width: 10%;
+    height: 10%;
+}

@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block body %}
-<div class="container-fluid">
+<div class="container">
 
     <!-- Row 1: SDG name and icon -->
     <div class="row align-items-center">
@@ -18,10 +18,27 @@
         </div>
         <div class="col-10">
             <h1>Progress for SDG <span id="goal-code">{{ progress.code }}</span></h1>
-            <h2>{{ progress.goal.title }}</h2>
+            <p>{{ progress.goal.title }}</p>
         </div>
     </div>
     <!-- End Row 1 -->
+    
+    <!-- Row 3: summary of work and time remaining-->
+    <div class="row align-items-top">
+        <div class="col-4">
+            <div class="card chart-container">
+                <h2>{{ progress.progress | round(2) }}% complete</h2>
+                <canvas id="progress-bar"></canvas>
+            </div>
+        </div>
+        <div class="col-2 chart-container">
+            <div class="card">
+                <h2>{{ 15 - progress.years_to_date | round(2) }} years remaining</h2>
+                <canvas id="time-pie"></canvas>
+            </div>
+        </div>
+    </div>
+    <!-- End Row 3 -->
 
     <!-- Row 2: sdg description -->
     <div class="row">
@@ -31,35 +48,11 @@
     </div>
     <!-- End Row 2 -->
 
-    <!-- Row 3: summary of work and time remaining-->
+    <!-- Row 4: progress bar and time remaining charts -->
     <div class="row">
         <div class="col">
-            {{ 100 - progress.progress }}% left
         </div>
         <div class="col">
-            {{ 15 - progress.years_to_date }} out of 15 years left
-        </div>
-    </div>
-    <!-- End Row 3 -->
-
-    <!-- Row 4: summary of progress percentage and years -->
-    <div class="row">
-        <div class="col">
-            {{ progress.progress }}% complete
-        </div>
-        <div class="col">
-            achieved over {{ progress.years_to_date }} years (starting in 2015).
-        </div>
-    </div>
-    <!-- End Row 4 -->
-
-    <!-- Row 5: progress bar and time remaining charts -->
-    <div class="row">
-        <div class="col">
-            <canvas id="progress-bar"></canvas>
-        </div>
-        <div class="col">
-            <canvas id="time-pie"></canvas>
         </div>
         <!-- <div class="col">
             <canvas id="test-line"></canvas>
@@ -71,22 +64,44 @@
             <canvas id="burndown"></canvas>
         </div> -->
     </div>
+    <!-- End Row 4 -->
+
+    <!-- Row 5: Indicators list header -->
+    <div class="row">
+        <div class = "col">
+            <span>List of Indicators</span>
+        </div>
+    </div>
     <!-- End Row 5 -->
 
-    <!-- Row 6: indicators -->
+    <!-- Row 6: Indicators table -->
     <div class="row">
         <div class="col">
-            <h1>List of Indicators</h1>
-            <ul>
-                {% for indicator in indicators %}
-                <li>
-                    <div>
-                        {{ indicator.id }}. 
-                    </div>
-                    {{ indicator.description }}
-                </li>
-                {% endfor %} 
-            </ul>
+            <table class="table table-hover table-striped table-bordered">
+                <thead>
+                    <th scope="col">ID</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Progress</th>
+                </thead>
+                <tbody>
+                    {% for indicator in indicators %}
+                    <tr>
+                        <td id="indicator-id-2">
+                            {{ indicator.id }}. 
+                        </td>
+                        <td>
+                            {{ indicator.description }}
+                        </td>
+                        <!-- <td>
+                            <canvas id="ind-progress-bar-2"></canvas>
+                        </td> -->
+                        <td>
+                            {{ indicator.progress }}% complete
+                        </td>
+                    </tr>
+                    {% endfor %} 
+                </tbody>
+            </table>
         </div>
     </div>
     <!-- End Row 6 -->
@@ -95,5 +110,5 @@
 {% endblock %}
 
 {% block after_body %}
-    <script src="/static/js_css/charts.js"></script>
+    <script src="/static/js/charts.js"></script>
 {% endblock %}
