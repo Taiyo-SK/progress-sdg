@@ -76,6 +76,10 @@ fetch(`/progress_data.json/${goalcode}`)
     // data
     let burn_progress = progress_data.progress;
     let burn_years = progress_data.years_from_start;
+
+    // to build the dotted segment of the actual line (expected up to 2023)
+    const skipped = (ctx, value) => ctx.p0.skip || ctx.p1.skip ? value : undefined;
+    
     const burn_data = {
         datasets: [{
             label: 'baseline',
@@ -87,8 +91,15 @@ fetch(`/progress_data.json/${goalcode}`)
             label: 'actual',
             data: [
                 {x: 15, y: 0},
-                {x: 15 + burn_years, y: burn_progress}
-            ]
+                {x: 15 + burn_years, y: burn_progress},
+                {x: 20, y: NaN},
+                {x: 23, y: 55}
+            ],
+            segment: {
+                borderColor: ctx => skipped(ctx, 'rgb(0,0,0.2)'),
+                borderDash: ctx => skipped(ctx, [6,6])
+            },
+            spanGaps: true
         }]
     }
 
@@ -101,9 +112,9 @@ fetch(`/progress_data.json/${goalcode}`)
                 x: {
                     type: 'linear',
                     position: 'bottom',
-                    // ticks: {
-                    //     callback: value => `20${value}`
-                    // }
+                    ticks: {
+                        callback: value => `20${value}`
+                    }
                 },
                 y: {
                     ticks: {
@@ -111,7 +122,12 @@ fetch(`/progress_data.json/${goalcode}`)
                     }
                 }
             },
-            showLine: true
+            showLine: true,
+            plugins: {
+                tooltip: {
+                    enabled: false,
+                }
+            }
         }
     };
 
