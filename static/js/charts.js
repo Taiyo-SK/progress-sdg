@@ -70,8 +70,52 @@ fetch(`/progress_data.json/${goalcode}`)
 
     // Burndown chart of both data points (progress and years)
 
-    // let burn_progress = progress_data.progress;
-    // let burn_years = progress_data.years_from_start;
+
+    const test_burn = document.querySelector('#burndown');
+
+    // data
+    let burn_progress = progress_data.progress;
+    let burn_years = progress_data.years_from_start;
+    const burn_data = {
+        datasets: [{
+            label: 'baseline',
+            data: [
+                {x: 15, y: 0}, 
+                {x: 30, y: 100},
+            ] 
+        }, {
+            label: 'actual',
+            data: [
+                {x: 15, y: 0},
+                {x: 15 + burn_years, y: burn_progress}
+            ]
+        }]
+    }
+
+    // config
+    const burn_config = {
+        type: 'scatter',
+        data: burn_data,
+        options: {
+            scales: {
+                x: {
+                    type: 'linear',
+                    position: 'bottom',
+                    // ticks: {
+                    //     callback: value => `20${value}`
+                    // }
+                },
+                y: {
+                    ticks: {
+                        callback: value => `${value}%`
+                    }
+                }
+            },
+            showLine: true
+        }
+    };
+
+    const burn_chart = new Chart(test_burn, burn_config);
 
 //     new Chart(document.querySelector('#burndown'), {
 //         type: 'line',

@@ -26,16 +26,16 @@
     <!-- Row 3: summary of work and time remaining-->
     <div class="row align-items-top">
         <div class="col-4">
-            <div class="card chart-container">
-                <h2>{{ progress.progress | round(2) }}% complete</h2>
+            <!-- <div class="card chart-container"> -->
+                <h2 class="chart-header">{{ progress.progress | round(2) }}% complete</h2>
                 <canvas id="progress-bar"></canvas>
-            </div>
+            <!-- </div> -->
         </div>
-        <div class="col-2 chart-container">
-            <div class="card">
-                <h2>{{ 15 - progress.years_to_date | round(2) }} years remaining</h2>
+        <div class="col-4 chart-container">
+            <!-- <div class="card"> -->
+                <h2 class="chart-header">{{ 15 - progress.years_to_date | round(2) }} years remaining</h2>
                 <canvas id="time-pie"></canvas>
-            </div>
+            <!-- </div> -->
         </div>
     </div>
     <!-- End Row 3 -->
@@ -48,21 +48,11 @@
     </div>
     <!-- End Row 2 -->
 
-    <!-- Row 4: progress bar and time remaining charts -->
+    <!-- Row 4: data burndown analysis -->
     <div class="row">
-        <div class="col">
-        </div>
-        <div class="col">
-        </div>
-        <!-- <div class="col">
-            <canvas id="test-line"></canvas>
-        </div>
-        <div class="col">
-            <canvas id="custom-objs"></canvas>
-        </div>
-        <div class="col">
+        <div class="col 2 chart-container">
             <canvas id="burndown"></canvas>
-        </div> -->
+        </div>
     </div>
     <!-- End Row 4 -->
 
