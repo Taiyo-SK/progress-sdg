@@ -1,8 +1,4 @@
-/* Goal details page */
-
-#summary-row {
-    height: 50px;
-}
+/* Goal list page */
 
 .container {
     font-family: 'Roboto', sans-serif;
@@ -13,22 +9,73 @@
     height: 25px;
 }
 
-#progress-bar {
-    height:100px;
-    width: 100px;
-}
-.chart-container {
-    width: 50%;
-    height: 50%;
-    margin: auto;
-}
-
 .goal-icon {
     height: 100%;
     width: 100%;
 }
 
-.chart-header {
-    width: 10%;
-    height: 10%;
+
+/* Goal details page */
+
+
+/* Charts */
+
+.summary-chart {
+    max-height: 5rem;
+}
+
+/* sdg custom css */
+
+.css-backdrop-1 {
+    color: #e5243b;
+}
+
+.css-backdrop-2 {
+    color: #dda63a;
+}
+
+.css-backdrop-3 {
+    color: #4c9f38;
+}
+.css-backdrop-4 {
+    color: #c5192d;
+}
+.css-backdrop-5 {
+    color: #ff3a21;
+}
+.css-backdrop-6 {
+    color: #26bde2;
+}
+.css-backdrop-7 {
+    color: #fcc30b;
+}
+.css-backdrop-8 {
+    color: #a21942;
+}
+.css-backdrop-9 {
+    color: #fd6925;
+}
+.css-backdrop-10 {
+    color: #dd1367;
+}
+.css-backdrop-11 {
+    color: #fd9d24;
+}
+.css-backdrop-12 {
+    color: #bf8b2e;
+}
+.css-backdrop-13 {
+    color: #3f7e44;
+}
+.css-backdrop-14 {
+    color: #0a97d9;
+}
+.css-backdrop-15 {
+    color: #56c02b;
+}
+.css-backdrop-16 {
+    color: #00689d;
+}
+.css-backdrop-17 {
+    color: #19486a;
 }
