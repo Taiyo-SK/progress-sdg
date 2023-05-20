@@ -14,20 +14,12 @@ app.jinja_env.undefined = StrictUndefined
 
 ### Routes and views
 
+### Goals/homepage
+
 
 @app.route('/')
-def homepage():
-    """View homepage."""
-
-    return render_template('homepage.html')
-
-
-### Goals
-
-
-@app.route('/goals')
 def view_goals():
-    """View all SDGs."""
+    """View all SDGs. Acts as homepage."""
 
     goals = crud.get_goals()
     # progress = crud.get_progress() # might not need? trying to fix the goal cards
