@@ -15,7 +15,7 @@ fetch(`/progress_data.json/${goalcode}`)
     
     // progress bar displaying the progress data
 
-    new Chart(document.querySelector('#progress-bar'), {
+    new Chart(document.querySelectorAll('.progress-bar'), {
         type: 'bar',
         data: {
             labels: [''],

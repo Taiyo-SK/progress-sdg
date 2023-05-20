@@ -8,24 +8,28 @@
         <h1>List of Goals</h1>
     </div>
 
-    <div class="row gy-5 row-cols-6">
+    <div class="row gy-5 row-cols-4">
         {% for goal in goals %}
         <div class="col">
             <div class="card">
                 <a href="/goals/{{ goal.code }}">
                     <img src="/static/icons/E-WEB-Goal-{{ goal.code }}.png" 
-                    alt="View progress details for sdg {{ goal.title }}" class="goal-icon"/>
+                    alt="View progress details for sdg {{ goal.code }}: {{ goal.title }}" class="goal-icon"/>
                 </a>
                 <div class="card-body">
-                    <h5 class="card-text">
+                    <div class="card-text">
                         {% for progress in goal.progress %}
-                        {{  progress.progress | round(2) }}% complete 
+                        {{  progress.progress | round | int }}% complete 
                         {% endfor %}
-                    </h5>
+                    </div>
                 </div>
             </div>
         </div>
         {% endfor %} 
     </div>
 </div>
+{% endblock %}
+
+{% block afterbody %}
+<script src="/static/js/charts.js"></script>
 {% endblock %}
