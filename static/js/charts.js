@@ -1,5 +1,14 @@
 'use strict';
 
+// event handler experiment
+
+const button = document.querySelector('#angry-button');
+
+function handleClick() {
+    alert('Stop clicking me!');
+}
+
+button.addEventListener('click', handleClick);
 
 // AJAX fetch for SDG progress data
 

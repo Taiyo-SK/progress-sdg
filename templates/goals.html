@@ -3,12 +3,19 @@
 {% block title %}Sustainable Development Goals{% endblock %}
 
 {% block body %}
+<!-- Begin header -->
 <h1>Understanding the world's biggest ESG commitments</h1>
 
-    <h2>Have you ever heard of the Sustainable Development Goals?</h2>
-    <svg xmlns="http://www.w3.org/2000/svg" id="brand-icon" viewBox="0 0 448 512">! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc.<path d="M160 80c0-26.5 21.5-48 48-48h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V80zM0 272c0-26.5 21.5-48 48-48H80c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V272zM368 96h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H368c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48z"/></svg>
-    <p>This project aims to shed light on these amorphous policies.</p>
-    
+<h2>Have you ever heard of the Sustainable Development Goals?</h2>
+<svg xmlns="http://www.w3.org/2000/svg" id="brand-icon" viewBox="0 0 448 512">! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc.<path d="M160 80c0-26.5 21.5-48 48-48h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V80zM0 272c0-26.5 21.5-48 48-48H80c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V272zM368 96h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H368c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48z"/></svg>
+<p>This project aims to shed light on these amorphous policies.</p>
+<!-- End header -->
+
+<!-- Begin event listener experiment -->
+<button id="angry-button">Don't click me!</button>
+<!-- End event listener experiment -->
+
+<!-- Begin list of goals, generated via Jinja -->
 <div class="container pt-1">
     <div class="row">
         <h1>List of Goals</h1>
@@ -23,6 +30,24 @@
                     alt="View progress details for sdg {{ goal.code }}: {{ goal.title }}" class="goal-icon"/>
                 </a>
                 <div class="card-body">
+                    <div class="card-header">
+                        <!-- sidebar experiment -->
+                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Sidebar Dashboard</button>
+                        <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+                            <div class="offcanvas-header">
+                                <h5 class="offcanvas-title" id="offcanvasScrollingLabel" href="/goals/{{ goal.code }}">Goal Dashboard</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <p>
+                                    {% for progress in goal.progress %}
+                                    {{  progress.progress | round | int }}% complete 
+                                    {% endfor %}
+                                </p>
+                            </div>
+                        </div>
+                        <!-- end sidebar -->
+                    </div>
                     <div class="card-text">
                         {% for progress in goal.progress %}
                         {{  progress.progress | round | int }}% complete 
