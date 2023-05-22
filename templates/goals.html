@@ -2,6 +2,10 @@
 
 {% block title %}Sustainable Development Goals{% endblock %}
 
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+{% endblock %}
+
 {% block body %}
 <!-- Begin header -->
 <h1>Understanding the world's biggest ESG commitments</h1>
@@ -10,10 +14,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" id="brand-icon" viewBox="0 0 448 512">! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc.<path d="M160 80c0-26.5 21.5-48 48-48h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V80zM0 272c0-26.5 21.5-48 48-48H80c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V272zM368 96h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H368c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48z"/></svg>
 <p>This project aims to shed light on these amorphous policies.</p>
 <!-- End header -->
-
-<!-- Begin event listener experiment -->
-<button id="angry-button">Don't click me!</button>
-<!-- End event listener experiment -->
 
 <!-- Begin list of goals, generated via Jinja -->
 <div class="container pt-1">
@@ -24,7 +24,7 @@
     <div class="row gy-5 row-cols-4">
         {% for goal in goals %}
         <div class="col">
-            <div class="card">
+            <div class="card goal-{{ goal.code }}">
                 <a href="/goals/{{ goal.code }}">
                     <img src="/static/icons/E-WEB-Goal-{{ goal.code }}.png" 
                     alt="View progress details for sdg {{ goal.code }}: {{ goal.title }}" class="goal-icon"/>
@@ -32,18 +32,15 @@
                 <div class="card-body">
                     <div class="card-header">
                         <!-- sidebar experiment -->
-                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Sidebar Dashboard</button>
-                        <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+                        <button id="spa-goal-code" class="btn btn-primary btn-goal" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">{{ goal.code }}</button>
+                        <div class="offcanvas offcanvas-start off-canvas-show" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
                             <div class="offcanvas-header">
                                 <h5 class="offcanvas-title" id="offcanvasScrollingLabel" href="/goals/{{ goal.code }}">Goal Dashboard</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                             </div>
                             <div class="offcanvas-body">
-                                <p>
-                                    {% for progress in goal.progress %}
-                                    {{  progress.progress | round | int }}% complete 
-                                    {% endfor %}
-                                </p>
+                                <div id="dashboard-progress">does this update?</div>
+                                <div id="dashboard-ytd"></div>
                             </div>
                         </div>
                         <!-- end sidebar -->
@@ -52,6 +49,8 @@
                         {% for progress in goal.progress %}
                         {{  progress.progress | round | int }}% complete 
                         {% endfor %}
+                        <button class="test-in" id="test-in{{ goal.code }}">{{ goal.code }}</button>
+                        <div class="test-out" id="test-out{{ goal.code }}"></div>
                     </div>
                 </div>
             </div>
@@ -61,6 +60,6 @@
 </div>
 {% endblock %}
 
-{% block afterbody %}
-<script src="/static/js/charts.js"></script>
+{% block after_body %}
+<script src="/static/js/spa.js"></script>
 {% endblock %}

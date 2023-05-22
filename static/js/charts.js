@@ -1,16 +1,6 @@
 'use strict';
 
-// event handler experiment
-
-const button = document.querySelector('#angry-button');
-
-function handleClick() {
-    alert('Stop clicking me!');
-}
-
-button.addEventListener('click', handleClick);
-
-// AJAX fetch for SDG progress data
+// AJAX fetch for SDG progress data (separate page)
 
 const goalcode = document.querySelector('#goal-code').innerHTML;
 
@@ -173,71 +163,6 @@ fetch(`/progress_data.json/${goalcode}`)
     };
 
     const burn_chart = new Chart(test_burn, burn_config);
-
-//     new Chart(document.querySelector('#burndown'), {
-//         type: 'line',
-//         data: {
-//             datasets: [{
-//                 label: 'baseline',
-//                 data: [
-//                     {'x': 15, 'y': 0},
-//                     {'x': 30, 'y': 100}
-//                 ]},
-//                 {
-//                 label: 'actual',
-//                 data: [
-//                     {'x': 15, 'y': 0,},
-//                     {'x': 19, 'y': 50}
-//                 ]}  
-//                 ]
-//             }
-//     });
-// });
-
-
-// new Chart(document.querySelector('#test-line'), {
-//     type: 'line',
-//     data: {
-//         datasets: [{
-//             label: 'test',
-//             data: {
-//                 5: 20,
-//                  10: 30
-//                 }
-//         },
-//         {
-//             label: 'test2',
-//             data: {
-//                 1: 3,
-//                 7: 14
-//             }
-//         }
-//         ]
-//     },
-//     options: {
-//         scales: {
-//             y: {
-//                 beginAtZero: true
-//             }
-//         }
-//     }
-// });
-
-// // test custom properties chart
-
-// new Chart(document.querySelector('#custom-objs'), {
-//     type: 'bar',
-//     data: {
-//       datasets: [{
-//         data: [{id: 'Sales', nested: {value: 1500}}, {id: 'Purchases', nested: {value: 500}}]
-//       }]
-//     },
-//     options: {
-//       parsing: {
-//         xAxisKey: 'id',
-//         yAxisKey: 'nested.value'
-//       }
-//     }
 });
 
 
