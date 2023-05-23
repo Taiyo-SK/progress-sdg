@@ -31,31 +31,39 @@
                 </a>
                 <div class="card-body">
                     <div class="card-header">
-                        <!-- sidebar experiment -->
-                        <button id="spa-goal-code" class="btn btn-primary btn-goal" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">{{ goal.code }}</button>
-                        <div class="offcanvas offcanvas-start off-canvas-show" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-                            <div class="offcanvas-header">
-                                <h5 class="offcanvas-title" id="offcanvasScrollingLabel" href="/goals/{{ goal.code }}">Goal Dashboard</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                            </div>
-                            <div class="offcanvas-body">
-                                <div id="dashboard-progress">does this update?</div>
-                                <div id="dashboard-ytd"></div>
-                            </div>
-                        </div>
-                        <!-- end sidebar -->
                     </div>
                     <div class="card-text">
                         {% for progress in goal.progress %}
                         {{  progress.progress | round | int }}% complete 
                         {% endfor %}
-                        <button class="test-in" id="test-in{{ goal.code }}">{{ goal.code }}</button>
-                        <div class="test-out" id="test-out{{ goal.code }}"></div>
+                        <!-- <button class="test-in" id="test-in-{{ goal.code }}">{{ goal.code }}</button> -->
+                        <button type="button" id="spa-goal-code" 
+                            class="btn btn-primary btn-goal test-in" 
+                            data-bs-toggle="offcanvas" 
+                            data-bs-target="#offcanvasScrolling" 
+                            aria-controls="offcanvasScrolling">
+                                <span class="spa-test-in" id="test-in-{{ goal.code }}">
+                                    {{ goal.code }}
+                                </span>
+                            Test
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
         {% endfor %} 
+        <!-- sidebar experiment -->
+        <div class="offcanvas offcanvas-start off-canvas-show" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Goal Dashboard</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body test-out">
+                <div id="dashboard-progress">does this update?</div>
+                <div id="dashboard-ytd"></div>
+            </div>
+        </div>
+        <!-- end sidebar -->
     </div>
 </div>
 {% endblock %}
