@@ -14,7 +14,11 @@
     width: 100%;
 }
 
+/* Side-bar */
 
+.side-bar {
+    width: 50px;
+}
 /* Goal details page */
 
 
