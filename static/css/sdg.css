@@ -14,10 +14,11 @@
     width: 100%;
 }
 
-/* Side-bar */
+/* Sidebar */
 
-.side-bar {
-    width: 50px;
+.sidebar {
+    width: 14rem!important;
+    min-height: 100vh;
 }
 /* Goal details page */
 

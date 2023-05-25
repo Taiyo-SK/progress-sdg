@@ -40,7 +40,7 @@ for (const inputGoal of inputGoals) {
     inputGoal.addEventListener('click', (evt) => {
         evt.preventDefault();
 
-        const inputGoalEle = inputGoal.querySelector('.spa-test-in');
+        const inputGoalEle = inputGoal.querySelector('.spa-goal-in');
         console.log(inputGoalEle);
         const goalcode = Number(inputGoalEle.innerText);
         
