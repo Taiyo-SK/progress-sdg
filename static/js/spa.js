@@ -48,23 +48,31 @@ for (const inputGoal of inputGoals) {
         .then(response => response.json())
         .then(responseJson => {
             const progress_data = {
+                title: responseJson.title,
+                description: responseJson.description,
                 progress: responseJson.progress,
-                years_from_start: responseJson.ytd
+                years_from_start: responseJson.ytd,
+                // indicator: responseJson.indicator
             };
             
+
             // progress bar displaying the progress data
 
-            new Chart(document.querySelectorAll('.progress-bar'), {
+            const progressCtx = document.querySelector('#progress-bar');
+
+            const progressData = {
+                labels: [''],
+                datasets: [
+                    {
+                        label: 'progress',
+                        data: [progress_data.progress],
+                    }
+                ],
+            };
+
+            const progressConfig = {
                 type: 'bar',
-                data: {
-                    labels: [''],
-                    datasets: [
-                        {
-                            label: 'progress',
-                            data: [progress_data.progress],
-                        },
-                    ],
-                },
+                data: progressData,
                 options: {
                     indexAxis: 'y',
                     scales: {
@@ -95,20 +103,90 @@ for (const inputGoal of inputGoals) {
                         }
                     }
                 }
-            });
+            };
+
+            
+            function drawProgress(ctx, config) {
+                let progressBar = null;
+                if (progressBar != null) {
+                    progressBar.destroy();
+                }
+
+                progressBar = new Chart(ctx, config);
+            };
+
+            drawProgress(progressCtx, progressConfig);
+
+            // new Chart(document.querySelectorAll('.progress-bar'), {
+            //     type: 'bar',
+            //     data: {
+            //         labels: [''],
+            //         datasets: [
+            //             {
+            //                 label: 'progress',
+            //                 data: [progress_data.progress],
+            //             },
+            //         ],
+            //     },
+            //     options: {
+            //         indexAxis: 'y',
+            //         scales: {
+            //             x: {
+            //                 max: 100,
+            //                 ticks: {
+            //                     // display: false,
+            //                     callback: value => `${value}%`
+            //                 }
+            //             },
+            //             y: {
+            //                 beginAtZero: true,
+            //                 grid: {
+            //                     display: false,
+            //                     drawBorder: false
+            //                 },
+            //                 ticks: {
+            //                     display: false
+            //                 }
+            //             },
+            //         },
+            //         plugins: {
+            //             legend: {
+            //                 display: false
+            //             },
+            //             tooltip: {
+            //                 enabled: false
+            //             }
+            //         }
+            //     }
+            // });
 
             // Pie chart using years elapsed/remaining
 
-            new Chart(document.querySelector('#spa-time-pie'), {
-                type: 'pie',
-                data: {
-                    labels: ['years from start', 'years remaining'],
-                    datasets: [
-                        {
-                            data: [progress_data.years_from_start, 15 - progress_data.years_from_start],
+            const pieTimeData = {
+                labels: ['years from start', 'years remaining'],
+                datasets: [
+                    {
+                        data: [
+                            progress_data.years_from_start, 
+                            15 - progress_data.years_from_start
+                        ],
+                    },
+               ],
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
                         },
-                    ],
-                },
+                        tooltip: {
+                            enabled: false
+                        }
+                    }
+                }
+            }
+
+            const pieTimeConfig = {
+                type: 'pie',
+                data: pieTimeData,
                 options: {
                     plugins: {
                         legend: {
@@ -119,21 +197,57 @@ for (const inputGoal of inputGoals) {
                         }
                     }
                 },
-            });
+            };
+
+            const pieCtx = document.querySelector('#spa-time-pie');
+            // new Chart(ctxPie, pie_time_config)
+
+            
+            function drawPie(ctx, config) {
+                let pieTimeChart = null;
+                if (pieTimeChart != null) {
+                    pieTimeChart.destroy();
+                }
+
+                pieTimeChart = new Chart(ctx, config);
+            };
+
+            drawPie(pieCtx, pieTimeConfig);
+            
+            // new Chart(document.querySelector('#spa-time-pie'), {
+            //     type: 'pie',
+            //     data: {
+            //         labels: ['years from start', 'years remaining'],
+            //         datasets: [
+            //             {
+            //                 data: [progress_data.years_from_start, 15 - progress_data.years_from_start],
+            //             },
+            //         ],
+            //     },
+            //     options: {
+            //         plugins: {
+            //             legend: {
+            //                 display: false
+            //             },
+            //             tooltip: {
+            //                 enabled: false
+            //             }
+            //         }
+            //     },
+            // });
 
             // Burndown chart of both data points (progress and years)
 
-
-            const test_burn = document.querySelector('#spa-burndown');
+            const burnCtx = document.querySelector('#spa-burndown');
 
             // data
-            const burn_progress = progress_data.progress;
-            const burn_years = progress_data.years_from_start;
+            const burnProgress = progress_data.progress;
+            const burnYears = progress_data.years_from_start;
 
             // to build the dotted segment of the actual line (expected up to 2023)
             const skipped = (ctx, value) => ctx.p0.skip || ctx.p1.skip ? value : undefined;
             
-            const burn_data = {
+            const burnData = {
                 datasets: [{
                     label: 'baseline',
                     data: [
@@ -144,14 +258,14 @@ for (const inputGoal of inputGoals) {
                     label: 'actual',
                     data: [
                         {x: 15, y: 0},
-                        {x: 15 + burn_years, y: burn_progress},
+                        {x: 15 + burnYears, y: burnProgress},
                     ],
                 }, {
                     label: 'most recent data',
                     data: [
-                        {x: 15 + burn_years, y: 0},
-                        {x: 15 + burn_years, y: NaN},
-                        {x: 15 + burn_years, y: 100}
+                        {x: 15 + burnYears, y: 0},
+                        {x: 15 + burnYears, y: NaN},
+                        {x: 15 + burnYears, y: 100}
                     ],
                     segment: {
                         borderColor: ctx => skipped(ctx, 'rgb(0,0,0.2)'),
@@ -174,9 +288,9 @@ for (const inputGoal of inputGoals) {
             }
 
             // config
-            const burn_config = {
+            const burnConfig = {
                 type: 'scatter',
-                data: burn_data,
+                data: burnData,
                 options: {
                     scales: {
                         x: {
@@ -202,7 +316,17 @@ for (const inputGoal of inputGoals) {
                 }
             };
 
-            const burn_chart = new Chart(test_burn, burn_config);
+            function drawBurn(ctx, config) {
+                let burnChart = null;
+                if (burnChart != null) {
+                    burnChart.destroy();
+                }
+
+                burnChart = new Chart(ctx, config);
+            };
+
+            drawBurn(burnCtx, burnConfig)
+            // const burn_chart = new Chart(test_burn, burn_config);
         });
     });
 };

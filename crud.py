@@ -60,6 +60,12 @@ def get_progress_by_goal(code):
     return Progress.query.filter_by(code=code).one()
 
 
+def get_goal(code):
+    """Return a specific goal."""
+
+    return Goal.query.filter_by(code=code).one()
+
+
 def get_indicators():
     """Return all indicators."""
 

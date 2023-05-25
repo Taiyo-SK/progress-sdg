@@ -50,12 +50,16 @@ def get_goal_progress_data(code):
     # 1. Get progress data using crud function
     ## This is returned as SQLA object--need to turn it into a dictionary
     ## Turn Python dict into JSON
+
     progress_data = crud.get_progress_by_goal(code)
 
-    return jsonify(progress=progress_data.progress,
-            ytd = progress_data.years_to_date)
-
-    # json_data = {'progress': progress, 'ytd': ytd}
+    return jsonify(
+            title = progress_data.goal.title,
+            description = progress_data.goal.description,
+            progress = progress_data.progress,
+            ytd = progress_data.years_to_date,
+            # indicator = progress_data.goal.indicator,
+            )
 
 
 ### Indicators
