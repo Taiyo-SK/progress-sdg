@@ -35,12 +35,12 @@ const inputGoals = document.querySelectorAll('#spa-goal-code');
 
 for (const inputGoal of inputGoals) {
 
-    // console.log(inputGoal.innerText);
+    console.log(inputGoal.innerText);
 
     inputGoal.addEventListener('click', (evt) => {
-        evt.preventDefault();
+        // evt.preventDefault();
 
-        const inputGoalEle = inputGoal.querySelector('.spa-goal-in');
+        const inputGoalEle = inputGoal.querySelector('.spa-test-in');
         console.log(inputGoalEle);
         const goalcode = Number(inputGoalEle.innerText);
         

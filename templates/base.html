@@ -87,11 +87,11 @@
                                 {% for progress in goal.progress %}
                                 {{  progress.progress | round | int }}% complete 
                                 {% endfor %}
-                                    <button type="button" 
+                                    <button type="button" id="spa-goal-code"
                                     data-bs-toggle="offcanvas" 
                                     data-bs-target="#offcanvasScrolling" 
                                     aria-controls="offcanvasScrolling">
-                                            <span class="spa-test-in" id="spa-goal-code">
+                                            <span class="spa-test-in" id="test-in-{{ goal.code }}">
                                                 {{ goal.code }}
                                             </span>
                                         Test
