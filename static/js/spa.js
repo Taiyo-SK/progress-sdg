@@ -64,12 +64,11 @@ function drawProgress(ajaxProgress) {
     }
 };
 
+
 // time remaining pie chart
 let timePie = null;
 
 function drawPie(ajaxTime) {
-
-    console.log(`ajax pull ${ajaxTime}`);
 
     const timePieCtx = document.querySelector('#spa-time-pie');
     
@@ -110,6 +109,103 @@ function drawPie(ajaxTime) {
     }
 };
 
+
+// burndown chart of progress and time
+let burnChart = null;
+
+function drawBurn(ajaxProgress, ajaxTime) {
+
+    const burnCtx = document.querySelector('#spa-burndown');
+
+    // to build the dotted segment of the actual line (expected up to 2023)
+    const skipped = (ctx, value) => ctx.p0.skip || ctx.p1.skip ? value : undefined;
+    
+    let burnData = {
+        datasets: [{
+            label: 'baseline',
+            data: [
+                {x: 15, y: 0}, 
+                {x: 30, y: 100},
+            ] 
+        }, {
+            label: 'actual',
+            data: [
+                {x: 15, y: 0},
+                {x: 15 + ajaxTime, y: ajaxProgress},
+            ],
+        }, {
+            label: 'most recent data',
+            data: [
+                {x: 15 + ajaxTime, y: 0},
+                {x: 15 + ajaxTime, y: NaN},
+                {x: 15 + ajaxTime, y: 100}
+            ],
+            segment: {
+                borderColor: ctx => skipped(ctx, 'rgb(0,0,0.2)'),
+                borderDash: ctx => skipped(ctx, [6,6])
+            },
+            spanGaps: true
+        }, {
+            label: '2023 reference',
+            data: [
+                {x: 23, y: 0},
+                {x:23, y: NaN},
+                {x: 23, y: 100}
+            ],
+            segment: {
+                borderColor: ctx => skipped(ctx, 'rgb(0,0,0.2)'),
+                borderDash: ctx => skipped(ctx, [6,6])
+            },
+            spanGaps: true
+        }]
+    }
+
+    // config
+    const burnConfig = {
+        type: 'scatter',
+        data: burnData,
+        options: {
+            scales: {
+                x: {
+                    type: 'linear',
+                    position: 'bottom',
+                    min: 15,
+                    ticks: {
+                        callback: value => `20${value}`
+                    }
+                },
+                y: {
+                    ticks: {
+                        callback: value => `${value}%`
+                    }
+                }
+            },
+            showLine: true,
+            plugins: {
+                tooltip: {
+                    enabled: false,
+                }
+            }
+        }
+    };
+
+    if (burnChart == null) {
+        burnChart = new Chart(burnCtx, burnConfig);
+    }
+    else {
+        let newActual = {x: 15 + ajaxTime, y: ajaxProgress};
+        let newMostRecent = [
+            {x: 15 + ajaxTime, y: 0},
+            {x: 15 + ajaxTime, y: NaN},
+            {x: 15 + ajaxTime, y: 100}
+        ];
+        burnChart.config._config.data.datasets[1].data[1] = newActual;
+        burnChart.config._config.data.datasets[2].data = newMostRecent;
+        burnChart.update();
+    }
+};
+
+
 // Create event handler for each goal's button
 const inputGoals = document.querySelectorAll('#spa-goal-code');
 
@@ -138,173 +234,7 @@ for (const inputGoal of inputGoals) {
 
             drawPie(progress_data.years_from_start);
 
-            // Pie chart using years elapsed/remaining
-
-    //         const pieTimeData = {
-    //             labels: ['years from start', 'years remaining'],
-    //             datasets: [
-    //                 {
-    //                     data: [
-    //                         progress_data.years_from_start, 
-    //                         15 - progress_data.years_from_start
-    //                     ],
-    //                 },
-    //            ],
-    //             options: {
-    //                 plugins: {
-    //                     legend: {
-    //                         display: false
-    //                     },
-    //                     tooltip: {
-    //                         enabled: false
-    //                     }
-    //                 }
-    //             }
-    //         }
-
-    //         const pieTimeConfig = {
-    //             type: 'pie',
-    //             data: pieTimeData,
-    //             options: {
-    //                 plugins: {
-    //                     legend: {
-    //                         display: false
-    //                     },
-    //                     tooltip: {
-    //                         enabled: false
-    //                     }
-    //                 }
-    //             },
-    //         };
-
-    //         const pieCtx = document.querySelector('#spa-time-pie');
-    //         // new Chart(ctxPie, pie_time_config)
-
-            
-    //         function drawPie(ctx, config) {
-    //             let pieTimeChart = null;
-    //             if (pieTimeChart != null) {
-    //                 pieTimeChart.destroy();
-    //             }
-
-    //             pieTimeChart = new Chart(ctx, config);
-    //         };
-
-    //         drawPie(pieCtx, pieTimeConfig);
-            
-    //         // new Chart(document.querySelector('#spa-time-pie'), {
-    //         //     type: 'pie',
-    //         //     data: {
-    //         //         labels: ['years from start', 'years remaining'],
-    //         //         datasets: [
-    //         //             {
-    //         //                 data: [progress_data.years_from_start, 15 - progress_data.years_from_start],
-    //         //             },
-    //         //         ],
-    //         //     },
-    //         //     options: {
-    //         //         plugins: {
-    //         //             legend: {
-    //         //                 display: false
-    //         //             },
-    //         //             tooltip: {
-    //         //                 enabled: false
-    //         //             }
-    //         //         }
-    //         //     },
-    //         // });
-
-    //         // Burndown chart of both data points (progress and years)
-
-    //         const burnCtx = document.querySelector('#spa-burndown');
-
-    //         // data
-    //         const burnProgress = progress_data.progress;
-    //         const burnYears = progress_data.years_from_start;
-
-    //         // to build the dotted segment of the actual line (expected up to 2023)
-    //         const skipped = (ctx, value) => ctx.p0.skip || ctx.p1.skip ? value : undefined;
-            
-    //         const burnData = {
-    //             datasets: [{
-    //                 label: 'baseline',
-    //                 data: [
-    //                     {x: 15, y: 0}, 
-    //                     {x: 30, y: 100},
-    //                 ] 
-    //             }, {
-    //                 label: 'actual',
-    //                 data: [
-    //                     {x: 15, y: 0},
-    //                     {x: 15 + burnYears, y: burnProgress},
-    //                 ],
-    //             }, {
-    //                 label: 'most recent data',
-    //                 data: [
-    //                     {x: 15 + burnYears, y: 0},
-    //                     {x: 15 + burnYears, y: NaN},
-    //                     {x: 15 + burnYears, y: 100}
-    //                 ],
-    //                 segment: {
-    //                     borderColor: ctx => skipped(ctx, 'rgb(0,0,0.2)'),
-    //                     borderDash: ctx => skipped(ctx, [6,6])
-    //                 },
-    //                 spanGaps: true
-    //             }, {
-    //                 label: '2023 reference',
-    //                 data: [
-    //                     {x: 23, y: 0},
-    //                     {x:23, y: NaN},
-    //                     {x: 23, y: 100}
-    //                 ],
-    //                 segment: {
-    //                     borderColor: ctx => skipped(ctx, 'rgb(0,0,0.2)'),
-    //                     borderDash: ctx => skipped(ctx, [6,6])
-    //                 },
-    //                 spanGaps: true
-    //             }]
-    //         }
-
-    //         // config
-    //         const burnConfig = {
-    //             type: 'scatter',
-    //             data: burnData,
-    //             options: {
-    //                 scales: {
-    //                     x: {
-    //                         type: 'linear',
-    //                         position: 'bottom',
-    //                         min: 15,
-    //                         ticks: {
-    //                             callback: value => `20${value}`
-    //                         }
-    //                     },
-    //                     y: {
-    //                         ticks: {
-    //                             callback: value => `${value}%`
-    //                         }
-    //                     }
-    //                 },
-    //                 showLine: true,
-    //                 plugins: {
-    //                     tooltip: {
-    //                         enabled: false,
-    //                     }
-    //                 }
-    //             }
-    //         };
-
-    //         function drawBurn(ctx, config) {
-    //             let burnChart = null;
-    //             if (burnChart != null) {
-    //                 burnChart.destroy();
-    //             }
-
-    //             burnChart = new Chart(ctx, config);
-    //         };
-
-    //         drawBurn(burnCtx, burnConfig)
-    //         // const burn_chart = new Chart(test_burn, burn_config);
+            drawBurn(progress_data.progress, progress_data.years_from_start)
         });
     });
 };
