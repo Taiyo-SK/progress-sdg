@@ -1,18 +1,12 @@
 'use strict';
 
-// // event handler (SPA)
 
-// progress bar initialization
-// // 1. create function to display results for a sdg
-
-
+// progress bar
 
 let progressBar = null;
 
 function drawProgress(ajaxProgress) {
 
-    console.log(`ajax pull ${ajaxProgress}`);
-    
     const progressCtx = document.querySelector('#progress-bar');
     
     let progressData = {
@@ -61,31 +55,69 @@ function drawProgress(ajaxProgress) {
         };
 
     if (progressBar == null) {
-        console.log(`if statement`);
         progressBar = new Chart(progressCtx, progressConfig);
-        console.log(progressBar.config._config.data.datasets[0].data);
     }
     else {
-        let newDatasArray = ajaxProgress;
-        console.log(`${newDatasArray} else statement`);
-        progressBar.config._config.data.datasets[0].data = [newDatasArray];
-        console.log(`data for additional fetch ${progressData.datasets.data}`);
+        let newData = ajaxProgress;
+        progressBar.config._config.data.datasets[0].data = [newData];
         progressBar.update();
-        console.log(progressBar.config._config.data.datasets[0].data);
     }
 };
 
+// time remaining pie chart
+let timePie = null;
 
-// // 2. create event handler for each goal's button
+function drawPie(ajaxTime) {
+
+    console.log(`ajax pull ${ajaxTime}`);
+
+    const timePieCtx = document.querySelector('#spa-time-pie');
+    
+    const timePieData = {
+        labels: ['years from start', 'years remaining'],
+        datasets: [
+            {
+                data: [
+                    ajaxTime,
+                    15 - ajaxTime
+                ],
+            },
+       ]
+    }
+
+    const timePieConfig = {
+        type: 'pie',
+        data: timePieData,
+        options: {
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    enabled: false
+                }
+            }
+        },
+    };
+
+    if (timePie == null) {
+        timePie = new Chart(timePieCtx, timePieConfig);
+    }
+    else {
+        let newData = [ajaxTime, 15 - ajaxTime];
+        timePie.config._config.data.datasets[0].data = newData;
+        timePie.update();
+    }
+};
+
+// Create event handler for each goal's button
 const inputGoals = document.querySelectorAll('#spa-goal-code');
-
 
 for (const inputGoal of inputGoals) {
 
     console.log(inputGoal.innerText);
 
     inputGoal.addEventListener('click', (evt) => {
-        // evt.preventDefault();
 
         const inputGoalEle = inputGoal.querySelector('.spa-test-in');
         console.log(inputGoalEle);
@@ -104,66 +136,7 @@ for (const inputGoal of inputGoals) {
             
             drawProgress(progress_data.progress);
 
-            
-            // let progressBar = new Chart(progressCtx, progressConfig);
-            
-            // function drawProgress2(ctx, config) {
-
-            //     console.log(progressBar);
-
-            //     let newDatasArray = progress_data.progress;
-            //     progressData = newDatasArray;
-
-            //     progressBar.update();
-            // };
-
-            // drawProgress2(progressCtx, progressConfig);
-
-            // drawProgress2(progressCtx, progressConfig);
-
-
-            // new Chart(document.querySelectorAll('.progress-bar'), {
-            //     type: 'bar',
-            //     data: {
-            //         labels: [''],
-            //         datasets: [
-            //             {
-            //                 label: 'progress',
-            //                 data: [progress_data.progress],
-            //             },
-            //         ],
-            //     },
-            //     options: {
-            //         indexAxis: 'y',
-            //         scales: {
-            //             x: {
-            //                 max: 100,
-            //                 ticks: {
-            //                     // display: false,
-            //                     callback: value => `${value}%`
-            //                 }
-            //             },
-            //             y: {
-            //                 beginAtZero: true,
-            //                 grid: {
-            //                     display: false,
-            //                     drawBorder: false
-            //                 },
-            //                 ticks: {
-            //                     display: false
-            //                 }
-            //             },
-            //         },
-            //         plugins: {
-            //             legend: {
-            //                 display: false
-            //             },
-            //             tooltip: {
-            //                 enabled: false
-            //             }
-            //         }
-            //     }
-            // });
+            drawPie(progress_data.years_from_start);
 
             // Pie chart using years elapsed/remaining
 
