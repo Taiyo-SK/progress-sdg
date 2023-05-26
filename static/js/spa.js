@@ -1,20 +1,69 @@
 'use strict';
 
-// create event listeners for all goal buttons
-
-// const inputTests = document.querySelectorAll('button.test-in');
-// const outputTest = document.querySelector('.test-out');
-
-// for (const inputTest of inputTests) {
-//     inputTest.addEventListener('click', () => {
-//         outputTest.innerHTML = 'this works three';
-//     }); 
-// }
-
-
 // // event handler (SPA)
 
+// progress bar initialization
 // // 1. create function to display results for a sdg
+
+const progressCtx = document.querySelector('#progress-bar');
+let progressBar = null;
+
+function drawProgress(ctx, config) {
+    if (progressBar == null) {
+        progressBar = new Chart(ctx, config);
+    }
+    else {
+        let newDatasArray = progress_data.progress;
+        progressData = newDatasArray;
+        progressBar.update();
+    }
+};
+
+let progressData = {
+    labels: [''],
+    datasets: [
+        {
+            label: 'progress',
+            data: [0],
+        }
+    ],
+};
+
+const progressConfig = {
+    type: 'bar',
+    data: progressData,
+    options: {
+        indexAxis: 'y',
+        scales: {
+            x: {
+                max: 100,
+                ticks: {
+                    // display: false,
+                    callback: value => `${value}%`
+                }
+            },
+            y: {
+                beginAtZero: true,
+                grid: {
+                    display: false,
+                    drawBorder: false
+                },
+                ticks: {
+                    display: false
+                }
+            },
+        },
+        plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                enabled: false
+            }
+        }
+    }
+};
+
 
 function displayDash(results) {
     const goalProgress = results.progress;
@@ -30,8 +79,10 @@ function displayDash(results) {
     goalYtdEle.innerText = goalYtd;
 }
 
+
 // // 2. create event handler for each goal's button
 const inputGoals = document.querySelectorAll('#spa-goal-code');
+
 
 for (const inputGoal of inputGoals) {
 
@@ -55,67 +106,25 @@ for (const inputGoal of inputGoals) {
                 // indicator: responseJson.indicator
             };
             
-
-            // progress bar displaying the progress data
-
-            const progressCtx = document.querySelector('#progress-bar');
-
-            const progressData = {
-                labels: [''],
-                datasets: [
-                    {
-                        label: 'progress',
-                        data: [progress_data.progress],
-                    }
-                ],
-            };
-
-            const progressConfig = {
-                type: 'bar',
-                data: progressData,
-                options: {
-                    indexAxis: 'y',
-                    scales: {
-                        x: {
-                            max: 100,
-                            ticks: {
-                                // display: false,
-                                callback: value => `${value}%`
-                            }
-                        },
-                        y: {
-                            beginAtZero: true,
-                            grid: {
-                                display: false,
-                                drawBorder: false
-                            },
-                            ticks: {
-                                display: false
-                            }
-                        },
-                    },
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            enabled: false
-                        }
-                    }
-                }
-            };
+            drawProgress(progressCtx, progressConfig);
 
             
-            function drawProgress(ctx, config) {
-                let progressBar = null;
-                if (progressBar != null) {
-                    progressBar.destroy();
-                }
+            // let progressBar = new Chart(progressCtx, progressConfig);
+            
+            // function drawProgress2(ctx, config) {
 
-                progressBar = new Chart(ctx, config);
-            };
+            //     console.log(progressBar);
 
-            drawProgress(progressCtx, progressConfig);
+            //     let newDatasArray = progress_data.progress;
+            //     progressData = newDatasArray;
+
+            //     progressBar.update();
+            // };
+
+            // drawProgress2(progressCtx, progressConfig);
+
+            // drawProgress2(progressCtx, progressConfig);
+
 
             // new Chart(document.querySelectorAll('.progress-bar'), {
             //     type: 'bar',
