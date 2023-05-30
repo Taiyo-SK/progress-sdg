@@ -220,13 +220,12 @@ function updateText(ajaxCode, ajaxTitle, ajaxDescription) {
 
 // indicators list
 function listIndicators (ajaxIndicators) {
-    // let indId = document.querySelector('#indicator-id');
-    // let indDesc = document.querySelector('#indicator-description');
-    // let indProg = document.querySelector('#indicator-progress');
 
     let tableRef = document.querySelector('#indicators-tb');
+    let tableBody = document.querySelector('#indicators-tb-body');
 
     console.log(ajaxIndicators);
+    tableBody = null;
 
     for (const indicator of ajaxIndicators) {
         let newRow = tableRef.insertRow()
@@ -234,18 +233,9 @@ function listIndicators (ajaxIndicators) {
         let indDescription = newRow.insertCell(1)
         let indProgress = newRow.insertCell(2)
 
-        // let idData = indicator.id
-        // let descriptionData = indicator.description
-        // let progressData = indicator.progress
-
-        // console.log(indicator)
-        // console.log(idData)
-        // console.log(descriptionData)
-        // console.log(indicator.progress)
-
         indId.innerText = indicator.id,
         indDescription.innerText = indicator.description,
-        indProgress.innerText = indicator.progress
+        indProgress.innerText = `${Math.round(indicator.progress)}%`
     };
 };
 
