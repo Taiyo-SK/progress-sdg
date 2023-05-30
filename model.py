@@ -53,7 +53,7 @@ class Indicator(db.Model):
     goal = db.relationship('Goal', back_populates='indicator')
 
     def __repr__(self):
-        return f"""<Indicator {self.id}: {self.description}"""
+        return f"""<Indicator {self.id}: {self.description}>"""
 
 def connect_to_db(flask_app, db_uri='postgresql:///sdgprogress', echo=True):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri

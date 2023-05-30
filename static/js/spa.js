@@ -205,6 +205,7 @@ function drawBurn(ajaxProgress, ajaxTime) {
     }
 };
 
+
 // text inputs on page (goal title, description)
 function updateText(ajaxCode, ajaxTitle, ajaxDescription) {
     let goalCode = document.querySelector('#goal-code');
@@ -216,12 +217,43 @@ function updateText(ajaxCode, ajaxTitle, ajaxDescription) {
     goalDescr.innerText = ajaxDescription;
 };
 
+
+// indicators list
+function listIndicators (ajaxIndicators) {
+    // let indId = document.querySelector('#indicator-id');
+    // let indDesc = document.querySelector('#indicator-description');
+    // let indProg = document.querySelector('#indicator-progress');
+
+    let tableRef = document.querySelector('#indicators-tb');
+
+    console.log(ajaxIndicators);
+
+    for (const indicator of ajaxIndicators) {
+        let newRow = tableRef.insertRow()
+        let indId = newRow.insertCell(0)
+        let indDescription = newRow.insertCell(1)
+        let indProgress = newRow.insertCell(2)
+
+        // let idData = indicator.id
+        // let descriptionData = indicator.description
+        // let progressData = indicator.progress
+
+        // console.log(indicator)
+        // console.log(idData)
+        // console.log(descriptionData)
+        // console.log(indicator.progress)
+
+        indId.innerText = indicator.id,
+        indDescription.innerText = indicator.description,
+        indProgress.innerText = indicator.progress
+    };
+};
+
+
 // Create event handler for each goal's button
 const inputGoals = document.querySelectorAll('#spa-goal-code');
 
 for (const inputGoal of inputGoals) {
-
-    console.log(inputGoal.innerText);
 
     inputGoal.addEventListener('click', (evt) => {
 
@@ -238,7 +270,7 @@ for (const inputGoal of inputGoals) {
                 description: responseJson.description,
                 progress: responseJson.progress,
                 years_from_start: responseJson.ytd,
-                // indicator: responseJson.indicator
+                indicators: responseJson.indicators
             };
             
             drawProgress(progress_data.progress);
@@ -248,6 +280,13 @@ for (const inputGoal of inputGoals) {
             drawBurn(progress_data.progress, progress_data.years_from_start);
 
             updateText(progress_data.code, progress_data.title, progress_data.description);
+
+            console.log(progress_data.indicators);
+            console.log(progress_data.indicators[0]);
+            console.log(progress_data.indicators[0].id);
+            console.log(progress_data.indicators[0].description);
+            console.log(progress_data.indicators[0].progress);
+            listIndicators(progress_data.indicators);
         });
     });
 };

@@ -53,13 +53,26 @@ def get_goal_progress_data(code):
 
     progress_data = crud.get_progress_by_goal(code)
 
+    indicators_sqla_objs = progress_data.goal.indicator
+    indicators_list = []
+    for ind_obj in indicators_sqla_objs:
+        indicator_dict = { 'id': ind_obj.id, 
+                            'description': ind_obj.description, 
+                            'progress': ind_obj.progress
+                            }
+
+        indicators_list.append(indicator_dict)
+
+    # {2.1.1: Prevalence of undernourishment, 69.171}
+
+
     return jsonify(
             code = progress_data.code,
             title = progress_data.goal.title,
             description = progress_data.goal.description,
             progress = progress_data.progress,
             ytd = progress_data.years_to_date,
-            # indicator = progress_data.goal.indicator,
+            indicators = indicators_list,
             )
 
 
