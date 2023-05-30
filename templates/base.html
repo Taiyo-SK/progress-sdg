@@ -20,95 +20,43 @@
     </head>
 
     <body>
+          <!-- Begin navbar -->
+          <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+              <div class="container-fluid">
 
-        <!-- Begin navbar -->
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-
-              <!-- Begin brand (project name) -->
-              <a class="navbar-brand" href="#">
-                <img src="/static/icons/sdg_logos/sdg_wheel.png" 
-                alt="color wheel logo for the SDGs"
-                width="25" height="25"
-                class="d-inline-block align-text-top">
-                <!-- <svg xmlns="http://www.w3.org/2000/svg" id="brand-icon" viewBox="0 0 448 512">! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc.<path d="M160 80c0-26.5 21.5-48 48-48h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V80zM0 272c0-26.5 21.5-48 48-48H80c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V272zM368 96h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H368c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48z"/></svg> -->
-                ProgressSDG
-              </a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <!-- End brand -->
-              
-              <!-- Begin navbar items -->
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center">
-
-                  <!-- Item 1: goals -->
-                  <li class="nav-item">
-                      <button class="btn btn-primary" type="button" 
-                      data-bs-toggle="offcanvas" 
-                      data-bs-target="#offcanvasScrolling" 
-                      aria-controls="offcanvasScrolling">View Goals</button>
-                  </li>
-                  <!-- Item 2: indicators (disabled) -->
-                  <li class="nav-item">
-                    <a class="nav-link disabled" href="/indicators">Indicators</a>
-                  </li>
-                </ul>
-              </div>
-              <!-- End navbar items -->
-
-
-            </div>
-          </nav>
-        <!-- End navbar -->
-
-        <!-- Begin sidebar  -->
-        <nav class="navbar">
-          <div class="container-fluid">
-            <div class="offcanvas offcanvas-start sidebar" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-              <div class="offcanvas-header">
-                  <h5 class="offcanvas-title" id="offcanvasScrollingLabel">List of Goals</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-              </div>
-              <div class="offcanvas-body test-out">
-                  <ul class="navbar-nav">
-                    <!-- Begin goal cards -->
-                        {% for goal in goals %}
-                        <li class="nav-item">
-                          <div class="card goal-{{ goal.code }}">
-                            <a href="/goals/{{ goal.code }}">
-                                <img src="/static/icons/E-WEB-Goal-{{ goal.code }}.png" 
-                                alt="View progress details for sdg {{ goal.code }}: {{ goal.title }}" class="goal-icon"/>
-                            </a>
-                            <div class="card-body">
-                              <div class="card-header"></div>
-                              <div class="card-text">
-                                {% for progress in goal.progress %}
-                                {{  progress.progress | round | int }}% complete 
-                                {% endfor %}
-                                    <button type="button" id="spa-goal-code"
-                                    data-bs-toggle="offcanvas" 
-                                    data-bs-target="#offcanvasScrolling" 
-                                    aria-controls="offcanvasScrolling">
-                                            <span class="spa-test-in" id="test-in-{{ goal.code }}">
-                                                {{ goal.code }}
-                                            </span>
-                                        Test
-                                    </button>
-                              </div>
-                            </div>
-                          </div>
-                        </li>
-                          {% endfor %} 
-                      <!-- End goal cards -->
+                <!-- Begin brand (project name) -->
+                <a class="navbar-brand" href="#">
+                  <button type="button" class="btn btn-primary" data-bs-toggle="offcanvas" 
+                  data-bs-target="#offcanvasScrolling" 
+                  aria-controls="offcanvasScrolling">
+                  <img src="/static/icons/sdg_logos/sdg_wheel.png" 
+                  width="25" height="25"
+                  class="d-inline-block align-text-top">
+                  <!-- <svg xmlns="http://www.w3.org/2000/svg" id="brand-icon" viewBox="0 0 448 512">! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc.<path d="M160 80c0-26.5 21.5-48 48-48h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V80zM0 272c0-26.5 21.5-48 48-48H80c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V272zM368 96h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H368c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48z"/></svg> -->
+                  ProgressSDG
+                  </button>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- End brand -->
+                
+                <!-- Begin navbar items -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center">
+                    <!-- Item: indicators (disabled) -->
+                    <li class="nav-item">
+                      <a class="nav-link disabled" href="/indicators">Indicators</a>
+                    </li>
                   </ul>
                 </div>
+                <!-- End navbar items -->
               </div>
-          </div>
-            <!-- end sidebar -->
-        </nav>
-
+            </nav>
+          <!-- End navbar -->
+          <br>
+          <br>
+          <br>
         {% block body %} {% endblock %}
     
         {% block after_body %} {% endblock %}
