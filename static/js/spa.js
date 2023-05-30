@@ -205,6 +205,16 @@ function drawBurn(ajaxProgress, ajaxTime) {
     }
 };
 
+// text inputs on page (goal title, description)
+function updateText(ajaxCode, ajaxTitle, ajaxDescription) {
+    let goalCode = document.querySelector('#goal-code');
+    let goalTitle = document.querySelector('#goal-title');
+    let goalDescr = document.querySelector('#goal-description');
+
+    goalCode.innerText = ajaxCode;
+    goalTitle.innerText = ajaxTitle;
+    goalDescr.innerText = ajaxDescription;
+};
 
 // Create event handler for each goal's button
 const inputGoals = document.querySelectorAll('#spa-goal-code');
@@ -223,6 +233,7 @@ for (const inputGoal of inputGoals) {
         .then(response => response.json())
         .then(responseJson => {
             const progress_data = {
+                code: responseJson.code,
                 title: responseJson.title,
                 description: responseJson.description,
                 progress: responseJson.progress,
@@ -234,7 +245,9 @@ for (const inputGoal of inputGoals) {
 
             drawPie(progress_data.years_from_start);
 
-            drawBurn(progress_data.progress, progress_data.years_from_start)
+            drawBurn(progress_data.progress, progress_data.years_from_start);
+
+            updateText(progress_data.code, progress_data.title, progress_data.description);
         });
     });
 };

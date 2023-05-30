@@ -54,6 +54,7 @@ def get_goal_progress_data(code):
     progress_data = crud.get_progress_by_goal(code)
 
     return jsonify(
+            code = progress_data.code,
             title = progress_data.goal.title,
             description = progress_data.goal.description,
             progress = progress_data.progress,
