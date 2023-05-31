@@ -13,41 +13,39 @@
     <div class="container-fluid">
 
         <!-- Begin sidebar  -->
-        <div class="offcanvas offcanvas-start sidebar" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+        <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasScrollingLabel">List of Goals</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body test-out">
-                <ul class="navbar-nav">
                 <!-- Begin goal cards -->
-                    {% for goal in goals %}
-                    <div class="card goal-{{ goal.code }}">
-                        <a href="/goals/{{ goal.code }}">
-                            <img src="/static/icons/E-WEB-Goal-{{ goal.code }}.png" 
-                            alt="View progress details for sdg {{ goal.code }}: {{ goal.title }}" class="goal-icon"/>
-                        </a>
-                        <div class="card-body">
-                        <div class="card-header"></div>
-                        <div class="card-text">
-                            {% for progress in goal.progress %}
-                            {{  progress.progress | round | int }}% complete 
-                            {% endfor %}
-                                <button type="button" id="spa-goal-code"
-                                data-bs-toggle="offcanvas" 
-                                data-bs-target="#offcanvasScrolling" 
-                                aria-controls="offcanvasScrolling">
-                                        <span class="spa-test-in" id="test-in-{{ goal.code }}">
-                                            {{ goal.code }}
-                                        </span>
-                                    Test
-                                </button>
-                        </div>
-                        </div>
+                {% for goal in goals %}
+                <div class="card goal-{{ goal.code }}">
+                    <a href="/goals/{{ goal.code }}">
+                        <img src="/static/icons/E-WEB-Goal-{{ goal.code }}.png" 
+                        alt="View progress details for sdg {{ goal.code }}: {{ goal.title }}" class="goal-icon"/>
+                    </a>
+                    <div class="card-body">
+                    <div class="card-header"></div>
+                    <div class="card-text">
+                        {% for progress in goal.progress %}
+                        {{  progress.progress | round | int }}% complete 
+                        {% endfor %}
+                            <button type="button" id="spa-goal-code"
+                            data-bs-toggle="offcanvas" 
+                            data-bs-target="#offcanvasScrolling" 
+                            aria-controls="offcanvasScrolling">
+                                    <span class="spa-test-in" id="test-in-{{ goal.code }}">
+                                        {{ goal.code }}
+                                    </span>
+                                Test
+                            </button>
                     </div>
-                    {% endfor %} 
+                    </div>
+                </div>
+                {% endfor %} 
                 <!-- End goal cards -->
-                </ul>
             </div>
         </div>
         <!-- end sidebar -->
@@ -67,16 +65,11 @@
 
         <!-- Begin row: goal header -->
         <div class="row">
-            <div class="col-6">
+            <div class="col-3">
                 <h1>Progress for SDG <span id="goal-code"></span></h1>
                 <p id="goal-title"></p>
             </div>
-        </div>
-        <!-- End goal header row -->
-        <br>
-        
-        <!-- Begin row: progress completed and time remaining-->
-        <div class="row">
+            <!-- Begin row: progress completed and time remaining-->
             <div class="col-3">
                 <div class="card card-chart">
                     <div class="card-header">
@@ -107,9 +100,14 @@
                             <canvas class="summary-chart" id="spa-time-pie"></canvas>
                     </div>
                 </div>
+                <!-- End progress and time remaining row -->
             </div>
         </div>
-        <!-- End progress and time remaining row -->
+        <!-- End goal header row -->
+        <br>
+        
+        <div class="row">
+        </div>
         <br>
 
         <!-- Begin row: sdg description -->
@@ -132,6 +130,20 @@
                     </div>
                 </div>
             </div>
+            <!-- Begin row: indicators table -->
+            <!-- <div class="row"> -->
+                <div class="col">
+                    <table id="indicators-tb" class="table table-hover table-striped table-bordered">
+                        <thead>
+                            <th scope="col">ID</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Progress</th>
+                        </thead>
+                        <tbody id="indicators-tb-body"></tbody>
+                    </table>
+                </div>
+            <!-- </div> -->
+            <!-- End indicators table row -->
         </div>
         <!-- End burndown row -->
         <br>
@@ -145,20 +157,6 @@
         <!-- End indictors header row -->
         <br>
 
-        <!-- Begin row: indicators table -->
-        <div class="row">
-            <div class="col">
-                <table id="indicators-tb" class="table table-hover table-striped table-bordered">
-                    <thead>
-                        <th scope="col">ID</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Progress</th>
-                    </thead>
-                    <tbody id="indicators-tb-body"></tbody>
-                </table>
-            </div>
-        </div>
-        <!-- End indicators table row -->
         <!-- End dashboard -->
     </div>
 </main>
