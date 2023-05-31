@@ -1,6 +1,8 @@
 'use strict';
 
 
+/* Section 1: Page Functions */
+
 // progress bar
 
 let progressBar = null;
@@ -222,10 +224,8 @@ function updateText(ajaxCode, ajaxTitle, ajaxDescription) {
 function listIndicators (ajaxIndicators) {
 
     let tableRef = document.querySelector('#indicators-tb');
-    let tableBody = document.querySelector('#indicators-tb-body');
 
-    console.log(ajaxIndicators);
-    tableBody = null;
+    tableRef.innerHTML = null;
 
     for (const indicator of ajaxIndicators) {
         let newRow = tableRef.insertRow()
@@ -240,6 +240,8 @@ function listIndicators (ajaxIndicators) {
 };
 
 
+/* Section 2: Event Handler */
+
 // Create event handler for each goal's button
 const inputGoals = document.querySelectorAll('#spa-goal-code');
 
@@ -248,7 +250,6 @@ for (const inputGoal of inputGoals) {
     inputGoal.addEventListener('click', (evt) => {
 
         const inputGoalEle = inputGoal.querySelector('.spa-test-in');
-        console.log(inputGoalEle);
         const goalcode = Number(inputGoalEle.innerText);
         
         fetch(`/progress_data.json/${goalcode}`)
@@ -271,11 +272,6 @@ for (const inputGoal of inputGoals) {
 
             updateText(progress_data.code, progress_data.title, progress_data.description);
 
-            console.log(progress_data.indicators);
-            console.log(progress_data.indicators[0]);
-            console.log(progress_data.indicators[0].id);
-            console.log(progress_data.indicators[0].description);
-            console.log(progress_data.indicators[0].progress);
             listIndicators(progress_data.indicators);
         });
     });
