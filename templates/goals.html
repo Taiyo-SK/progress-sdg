@@ -9,19 +9,23 @@
 {% block body %}
 
 
-<!-- Begin project overview -->
-<div class="row">
-    <h1>Tracking completion of the Sustainable Development Goals</h1>
-    <svg xmlns="http://www.w3.org/2000/svg" id="brand-icon" viewBox="0 0 448 512">! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc.<path d="M160 80c0-26.5 21.5-48 48-48h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V80zM0 272c0-26.5 21.5-48 48-48H80c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V272zM368 96h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H368c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48z"/></svg>
-    <p>This project aims to shed light on these amorphous policies.</p>
-</div>
-<!-- End project overview -->
-
 <div class="container-fluid">
     <div class="row">
+
         <!-- Begin sidebar  -->
         <div class="col-2 px-0 bg-light border-right vh-100" id="sidebar-wrapper">
             <nav class="navbar">
+                <a class="navbar-brand" href="#">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="offcanvas" 
+                    data-bs-target="#sidebarScrollingLabel" 
+                    aria-controls="sidebarScrollingLabel">
+                    <img src="/static/icons/sdg_logos/sdg_wheel.png" 
+                    width="25" height="25"
+                    class="d-inline-block align-text-top">
+                    <!-- <svg xmlns="http://www.w3.org/2000/svg" id="brand-icon" viewBox="0 0 448 512">! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc.<path d="M160 80c0-26.5 21.5-48 48-48h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V80zM0 272c0-26.5 21.5-48 48-48H80c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V272zM368 96h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H368c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48z"/></svg> -->
+                    ProgressSDG
+                    </button>
+                  </a>
                 <h5>List of Goals</h5>
                 <ul class="list-group list-group-flush overflow-auto h-100">
                     <!-- Begin goal cards -->
@@ -57,22 +61,30 @@
             </nav>
         </div>
         <!-- End sidebar -->
-        
+
         <!-- Begin main content (goal dashboard) -->
         <main class="col-10">
-            <!-- Begin dashboard -->
+            <!-- Begin project overview -->
+            <div class="row">
+                <h1>Tracking completion of the Sustainable Development Goals</h1>
+                <svg xmlns="http://www.w3.org/2000/svg" id="brand-icon" viewBox="0 0 448 512">! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc.<path d="M160 80c0-26.5 21.5-48 48-48h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V80zM0 272c0-26.5 21.5-48 48-48H80c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V272zM368 96h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H368c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48z"/></svg>
+                <p>This project aims to shed light on the world's biggest ESG commitments.</p>
+            </div>
+            <!-- End project overview -->
+            <br>
+
             <!-- Begin row: goal header -->
             <div class="row">
-                <div class="col-3">
-                    <h3>Progress for SDG <span id="goal-code"></span></h3>
+                <div class="col-5">
+                    <h2>Progress for SDG <span id="goal-code"></span></h2>
                 </div>
-                <p class="col-3" id="goal-title"></p>
+                <p class="col-5" id="goal-title"></p>
             </div>
             <!-- End goal header row -->
+            <br>
     
-            <!-- Begin row: summary (description, progress completed and time remaining)-->
+            <!-- Begin row: summary (progress completed and time remaining)-->
             <div class="row">
-                <p class="col-6" id="goal-description"></p>
                 <div class="col-3" id="progress-bar-container">
                     <div class="card card-chart">
                         <div class="card-header">
@@ -109,8 +121,10 @@
             </div>
             <!-- End summary row -->
             <br>
-        
+            
+            <!-- Begin row: sdg description -->
             <div class="row">
+                <p class="col-6" id="goal-description"></p>
             </div>
             <br>
     
@@ -127,6 +141,8 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="row">
                 <!-- End burndown row -->
                 <!-- Begin row: indicators table -->
                 <div class="col-6">
