@@ -16,10 +16,9 @@
 
 /* Sidebar */
 
-/* .sidebar {
-    width: 14rem!important;
-    min-height: 100vh;
-} */
+#sidebar-wrapper {
+    overflow-y: auto;
+}
 /* Goal details page */
 
 
