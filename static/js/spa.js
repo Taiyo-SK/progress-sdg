@@ -17,6 +17,7 @@ function drawProgress(ajaxProgress) {
             {
                 label: 'progress',
                 data: [ajaxProgress],
+                borderRadius: 5
             }
         ],
     };
@@ -209,14 +210,18 @@ function drawBurn(ajaxProgress, ajaxTime) {
 
 
 // text inputs on page (goal title, description)
-function updateText(ajaxCode, ajaxTitle, ajaxDescription) {
+function updateText(ajaxCode, ajaxTitle, ajaxDescription, ajaxProgress, ajaxTime) {
     let goalCode = document.querySelector('#goal-code');
     let goalTitle = document.querySelector('#goal-title');
     let goalDescr = document.querySelector('#goal-description');
+    let goalProg = document.querySelector('#progress-bar-header');
+    let goalTime = document.querySelector('#pie-chart-header');
 
     goalCode.innerText = ajaxCode;
     goalTitle.innerText = ajaxTitle;
     goalDescr.innerText = ajaxDescription;
+    goalProg.innerText = `${Math.round(ajaxProgress)}% complete`;
+    goalTime.innerText = `${Math.round(15 - ajaxTime)} years remaining`;
 };
 
 
@@ -242,15 +247,15 @@ function listIndicators (ajaxIndicators) {
 
 /* Section 2: Event Handler */
 
-// Create event handler for each goal's button
-const inputGoals = document.querySelectorAll('#spa-goal-code');
+// Create event handler for each goal's image
+const inputGoals = document.querySelectorAll('.list-group-item');
 
 for (const inputGoal of inputGoals) {
 
     inputGoal.addEventListener('click', (evt) => {
 
-        const inputGoalEle = inputGoal.querySelector('.spa-test-in');
-        const goalcode = Number(inputGoalEle.innerText);
+        const inputGoalEle = inputGoal.querySelector('#spa-goal-code');
+        const goalcode = inputGoalEle.dataset.indexNumber;
         
         fetch(`/progress_data.json/${goalcode}`)
         .then(response => response.json())
@@ -270,7 +275,9 @@ for (const inputGoal of inputGoals) {
 
             drawBurn(progress_data.progress, progress_data.years_from_start);
 
-            updateText(progress_data.code, progress_data.title, progress_data.description);
+            updateText(progress_data.code, progress_data.title, 
+                progress_data.description, progress_data.progress, 
+                progress_data.years_from_start);
 
             listIndicators(progress_data.indicators);
         });
