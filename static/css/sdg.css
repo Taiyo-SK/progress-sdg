@@ -1,10 +1,10 @@
 /* Goal list page */
 
-.container {
+.container-fluid {
     font-family: 'Roboto', sans-serif;
 }
 
-#brand-icon {
+.navbar-brand {
     width: 25px;
     height: 25px;
 }
@@ -30,11 +30,11 @@
 
 /* sdg custom css */
 
-.css-backdrop-1 {
+canvas[data-index-number="1"] {
     color: #e5243b;
 }
 
-.css-backdrop-2 {
+main[data-index-number="2"] {
     color: #dda63a;
 }
 

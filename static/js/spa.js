@@ -3,6 +3,13 @@
 
 /* Section 1: Page Functions */
 
+// css enablement
+function updateCss(ajaxCode) {
+    let dashContainer = document.querySelector('#progress-bar');
+
+    dashContainer.dataset.indexNumber = ajaxCode;
+};
+
 // progress bar
 
 let progressBar = null;
@@ -268,6 +275,8 @@ for (const inputGoal of inputGoals) {
                 years_from_start: responseJson.ytd,
                 indicators: responseJson.indicators
             };
+            
+            updateCss(progress_data.code);
             
             drawProgress(progress_data.progress);
 

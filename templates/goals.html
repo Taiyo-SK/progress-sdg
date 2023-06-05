@@ -10,18 +10,31 @@
 
 
 <div class="container-fluid">
+    <!-- Begin header -->
+    <header class="row align-items-center">
+        <div class="col-2">
+            <a class="navbar-brand" href="#">
+                <img src="/static/icons/sdg_logos/sdg_wheel.png" 
+                width="25" height="25"
+                class="d-inline-block align-text-top">
+                ProgressSDG
+              </a>
+        </div>
+        <!-- Begin project overview -->
+        <div class="col-10">
+            <div class="row border-bottom">
+                <h1>Tracking completion of the Sustainable Development Goals</h1>
+                <p>This project aims to shed light on the world's biggest ESG commitments.</p>
+            </div>
+        </div>
+        <!-- End project overview -->
+    </header>
+    <!-- End header -->
     <div class="row">
 
         <!-- Begin sidebar  -->
         <div class="col-2 px-0 border-right vh-100" id="sidebar-wrapper">
             <nav class="navbar">
-                <a class="navbar-brand" href="#">
-                    <img src="/static/icons/sdg_logos/sdg_wheel.png" 
-                    width="25" height="25"
-                    class="d-inline-block align-text-top">
-                    <!-- <svg xmlns="http://www.w3.org/2000/svg" id="brand-icon" viewBox="0 0 448 512">! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc.<path d="M160 80c0-26.5 21.5-48 48-48h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V80zM0 272c0-26.5 21.5-48 48-48H80c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V272zM368 96h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H368c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48z"/></svg> -->
-                    ProgressSDG
-                  </a>
                 <h5>List of Goals</h5>
                 <ul class="list-group list-group-flush overflow-auto h-100">
                     <!-- Begin goal cards -->
@@ -41,18 +54,10 @@
         </div>
         <!-- End sidebar -->
 
-        <!-- Begin main content -->
-        <main class="col-10">
-            <!-- Begin project overview -->
-            <div class="row border-bottom">
-                <h1>Tracking completion of the Sustainable Development Goals</h1>
-                <svg xmlns="http://www.w3.org/2000/svg" id="brand-icon" viewBox="0 0 448 512">! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc.<path d="M160 80c0-26.5 21.5-48 48-48h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V80zM0 272c0-26.5 21.5-48 48-48H80c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V272zM368 96h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H368c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48z"/></svg>
-                <p>This project aims to shed light on the world's biggest ESG commitments.</p>
-            </div>
-            <!-- End project overview -->
-            <br>
+        <!-- Begin dashboard -->
+        <main class="col-10" id="dashboard-container" data-index-number="">
 
-            <!-- Begin row: goal header -->
+            <!-- Begin row: dashboard header -->
             <div class="row">
                 <div class="col-5">
                     <h2>Progress for SDG <span id="goal-code"></span></h2>
@@ -75,7 +80,7 @@
                             <span id="progress-bar-header"></span>
                         </div>
                         <div class="card-body">
-                            <canvas id="progress-bar" class="summary-chart progress-bar"></canvas>
+                            <canvas id="progress-bar" class="summary-chart progress-bar" data-index-number=""></canvas>
                         </div>
                     </div>
                 </div>
@@ -142,7 +147,7 @@
             </div>
             <!-- end sidebar -->
         </main>
-        <!-- End main content -->
+        <!-- End dashboard -->
     
     </div>
 </div>
