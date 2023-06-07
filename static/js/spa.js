@@ -177,7 +177,7 @@ function drawBurn(ajaxProgress, ajaxTime, ajaxCode) {
                 'rgb(0,0,0.2)'
             ]
         }, {
-            label: 'most recent data',
+            label: 'data last provided',
             data: [
                 {x: 15 + ajaxTime, y: 0},
                 {x: 15 + ajaxTime, y: NaN},
@@ -186,8 +186,8 @@ function drawBurn(ajaxProgress, ajaxTime, ajaxCode) {
             backgroundColor: ['#a8a7a7'],
             borderColor: ['#a8a7a7'],
             segment: {
-                // backgroundColor: ctx => skipped(ctx, '#a8a7a7'),
-                // borderColor: ctx => skipped(ctx, '#a8a7a7'),
+                backgroundColor: ctx => skipped(ctx, '#a8a7a7'),
+                borderColor: ctx => skipped(ctx, '#a8a7a7'),
                 borderDash: ctx => skipped(ctx, [6,6])
             },
             spanGaps: true
@@ -201,8 +201,8 @@ function drawBurn(ajaxProgress, ajaxTime, ajaxCode) {
             backgroundColor: ['#e1e1e1'],
             borderColor: ['#e1e1e1'],
             segment: {
-                // backgroundColor: ctx => skipped(ctx, '#e1e1e1'),
-                // borderColor: ctx => skipped(ctx, '#e1e1e1'),
+                backgroundColor: ctx => skipped(ctx, '#e1e1e1'),
+                borderColor: ctx => skipped(ctx, '#e1e1e1'),
                 borderDash: ctx => skipped(ctx, [6,6])
             },
             spanGaps: true
@@ -228,11 +228,6 @@ function drawBurn(ajaxProgress, ajaxTime, ajaxCode) {
                     }
                 }
             },
-            // elements: {
-            //     line: {
-            //         backgroundColor: customColor
-            //     }
-            // },
             showLine: true,
             plugins: {
                 tooltip: {
@@ -252,10 +247,10 @@ function drawBurn(ajaxProgress, ajaxTime, ajaxCode) {
             {x: 15 + ajaxTime, y: NaN},
             {x: 15 + ajaxTime, y: 100}
         ];
-        burnChart.config._config.data.datasets[1].data[1] = newActual;
+        burnChart.config._config.data.datasets[0].data[1] = newActual;
         burnChart.config._config.data.datasets[2].data = newMostRecent;
-        burnChart.config._config.data.datasets[1].backgroundColor[0] = customColor;
-        burnChart.config._config.data.datasets[1].borderColor[0] = customColor;
+        burnChart.config._config.data.datasets[0].backgroundColor[0] = customColor;
+        burnChart.config._config.data.datasets[0].borderColor[0] = customColor;
         burnChart.update();
     }
 };
@@ -264,12 +259,14 @@ function drawBurn(ajaxProgress, ajaxTime, ajaxCode) {
 // text inputs on page (goal title, description)
 function updateText(ajaxCode, ajaxTitle, ajaxDescription, ajaxProgress, ajaxTime) {
     let goalCode = document.querySelector('#goal-code');
+    let navBrandCode = document.querySelector('#sdg-letters');
     let goalTitle = document.querySelector('#goal-title');
     let goalDescr = document.querySelector('#goal-description');
     let goalProg = document.querySelector('#progress-bar-header');
     let goalTime = document.querySelector('#pie-chart-header');
 
     goalCode.innerText = ajaxCode;
+    navBrandCode.dataset.indexNumber = ajaxCode;
     goalTitle.innerText = ajaxTitle;
     goalDescr.innerText = ajaxDescription;
     goalProg.innerText = `${Math.round(ajaxProgress)}% complete`;
