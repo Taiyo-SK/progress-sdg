@@ -4,21 +4,30 @@
 /* Section 1: Page Functions */
 
 // css enablement
-function updateCss(ajaxCode) {
-    let dashContainer = document.querySelector('#progress-bar');
+// function updateCss(ajaxCode) {
+//     let progressContainer = document.querySelector('#progress-bar');
 
-    dashContainer.dataset.indexNumber = ajaxCode;
-};
+//     progressContainer.dataset.indexNumber = ajaxCode;
+
+//     let compStyles = window.getComputedStyle(progressContainer);
+//     let customColor = compStyles.getPropertyValue("color");
+//     console.log(customColor);
+// };
 
 // DOM.classlist.add from Tyler
+// e.g. progressCtx.classList.add(`css-backdrop-${ajaxCode}`);
 
 // progress bar
 
 let progressBar = null;
 
-function drawProgress(ajaxProgress) {
+function drawProgress(ajaxProgress, ajaxCode) {
 
     const progressCtx = document.querySelector('#progress-bar');
+    progressCtx.dataset.indexNumber = ajaxCode;
+    let compStyles = window.getComputedStyle(progressCtx);
+    let customColor = compStyles.getPropertyValue("color");
+    console.log(customColor);
     
     let progressData = {
         labels: [''],
@@ -26,7 +35,8 @@ function drawProgress(ajaxProgress) {
             {
                 label: 'progress',
                 data: [ajaxProgress],
-                borderRadius: 5
+                borderRadius: 5,
+                backgroundColor: customColor
             }
         ],
     };
@@ -72,6 +82,7 @@ function drawProgress(ajaxProgress) {
     else {
         let newData = ajaxProgress;
         progressBar.config._config.data.datasets[0].data = [newData];
+        progressBar.config._config.data.datasets[0].backgroundColor = customColor;
         progressBar.update();
     }
 };
@@ -278,9 +289,9 @@ for (const inputGoal of inputGoals) {
                 indicators: responseJson.indicators
             };
             
-            updateCss(progress_data.code);
+            // updateCss(progress_data.code);
             
-            drawProgress(progress_data.progress);
+            drawProgress(progress_data.progress, progress_data.code);
 
             drawPie(progress_data.years_from_start);
 
