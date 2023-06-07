@@ -8,61 +8,64 @@
 
 {% block body %}
 
-
 <div class="container-fluid">
-    <!-- Begin header -->
-    <header class="row align-items-center">
-        <div class="col-2">
-            <a class="navbar-brand" href="#">
-                <img src="/static/icons/sdg_logos/sdg_wheel.png" 
-                width="25" height="25"
-                class="d-inline-block align-text-top">
-                ProgressSDG
-              </a>
-        </div>
-        <!-- Begin project overview -->
-        <div class="col-10">
-            <div class="row border-bottom">
-                <h1>Tracking completion of the Sustainable Development Goals</h1>
-                <p>This project aims to shed light on the world's biggest ESG commitments.</p>
+    <!-- Begin overview modal -->
+    <div class="modal fade" id="overview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                How ProgressSDG Works
+              </h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div class="modal-body">
+                ProgressSDG is a tool to track completion of the 
+                Sustainable Development Goals (SDGs) from the United Nations. 
+                <br>
+                <br>
+                There are 16 SDGs covering all kinds of environmental, social,
+                and governance priorities. The 17th SDG measures partnerships
+                required for completing the other 16 goals.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
         </div>
-        <!-- End project overview -->
-    </header>
-    <!-- End header -->
-    <div class="row">
+      </div>
+    <!-- End overview modal -->
 
+    <div class="row black-border">
         <!-- Begin sidebar  -->
-        <div class="col-2 px-0 border-right vh-100" id="sidebar-wrapper">
-            <nav class="navbar">
-                <h5>List of Goals</h5>
-                <ul class="list-group list-group-flush overflow-auto h-100">
-                    <!-- Begin goal cards -->
-                    {% for goal in goals %}
-                    <li class="list-group-item">
-                        <div class="card goal-{{ goal.code }}">
-                            <a href="#" id="spa-goal-code" data-index-number="{{ goal.code }}">
-                                <img src="/static/icons/E-WEB-Goal-{{ goal.code }}.png" 
-                                alt="View progress details for sdg {{ goal.code }}: {{ goal.title }}" class="goal-icon"/>
-                            </a>
-                        </div>
-                    </li>
-                {% endfor %} 
-                <!-- End goal cards -->
-                </ul>
-            </nav>
+        <div class="col-2 border-right" id="sidebar-wrapper">
+            <h5 class="black-border">List of Goals</h5>
+            <ul class="list-group list-group-flush overflow-auto">
+                <!-- Begin goal cards -->
+                {% for goal in goals %}
+                <li class="list-group-item">
+                    <div class="card goal-{{ goal.code }}">
+                        <a href="#" id="spa-goal-code" data-index-number="{{ goal.code }}">
+                            <img src="/static/icons/E-WEB-Goal-{{ goal.code }}.png" 
+                            alt="View progress details for sdg {{ goal.code }}: {{ goal.title }}" class="goal-icon"/>
+                        </a>
+                    </div>
+                </li>
+            {% endfor %} 
+            <!-- End goal cards -->
+            </ul>
         </div>
         <!-- End sidebar -->
 
         <!-- Begin dashboard -->
-        <main class="col-10" id="dashboard-container" data-index-number="">
+        <main class="col-10 black-border" id="dashboard-container" data-index-number="">
 
             <!-- Begin row: dashboard header -->
-            <div class="row">
-                <div class="col-5">
+            <div class="row align-items-between black-border">
+                <div class="col-5 black-border">
                     <h2>Progress for SDG <span id="goal-code"></span></h2>
                 </div>
-                <p class="col-5" id="goal-title"></p>
+                <p class="col-5 black-border" id="goal-title"></p>
             </div>
             <!-- End goal header row -->
             <br>

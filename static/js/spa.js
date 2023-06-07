@@ -10,6 +10,8 @@ function updateCss(ajaxCode) {
     dashContainer.dataset.indexNumber = ajaxCode;
 };
 
+// DOM.classlist.add from Tyler
+
 // progress bar
 
 let progressBar = null;
