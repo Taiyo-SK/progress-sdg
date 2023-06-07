@@ -27,7 +27,6 @@ function drawProgress(ajaxProgress, ajaxCode) {
     progressCtx.dataset.indexNumber = ajaxCode;
     let compStyles = window.getComputedStyle(progressCtx);
     let customColor = compStyles.getPropertyValue("color");
-    console.log(customColor);
     
     let progressData = {
         labels: [''],
@@ -91,9 +90,13 @@ function drawProgress(ajaxProgress, ajaxCode) {
 // time remaining pie chart
 let timePie = null;
 
-function drawPie(ajaxTime) {
+function drawPie(ajaxTime, ajaxCode) {
 
     const timePieCtx = document.querySelector('#spa-time-pie');
+    timePieCtx.dataset.indexNumber = ajaxCode;
+    let compStyles = window.getComputedStyle(timePieCtx);
+    let customColor = compStyles.getPropertyValue("color");
+    console.log(customColor);
     
     const timePieData = {
         labels: ['years from start', 'years remaining'],
@@ -102,6 +105,10 @@ function drawPie(ajaxTime) {
                 data: [
                     ajaxTime,
                     15 - ajaxTime
+                ],
+                backgroundColor: [
+                    '#e1e1e1',
+                    customColor
                 ],
             },
        ]
@@ -128,6 +135,7 @@ function drawPie(ajaxTime) {
     else {
         let newData = [ajaxTime, 15 - ajaxTime];
         timePie.config._config.data.datasets[0].data = newData;
+        timePie.config._config.data.datasets[0].backgroundColor[1] = customColor;
         timePie.update();
     }
 };
@@ -293,7 +301,7 @@ for (const inputGoal of inputGoals) {
             
             drawProgress(progress_data.progress, progress_data.code);
 
-            drawPie(progress_data.years_from_start);
+            drawPie(progress_data.years_from_start, progress_data.code);
 
             drawBurn(progress_data.progress, progress_data.years_from_start);
 
