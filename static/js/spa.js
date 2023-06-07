@@ -3,19 +3,16 @@
 
 /* Section 1: Page Functions */
 
+const dashContainer = document.querySelector('#dashboard-container');
+
 // css enablement
 // function updateCss(ajaxCode) {
-//     let progressContainer = document.querySelector('#progress-bar');
+//     dashContainer.dataset.indexNumber = ajaxCode;
 
-//     progressContainer.dataset.indexNumber = ajaxCode;
-
-//     let compStyles = window.getComputedStyle(progressContainer);
+//     let compStyles = window.getComputedStyle(dashContainer);
 //     let customColor = compStyles.getPropertyValue("color");
 //     console.log(customColor);
 // };
-
-// DOM.classlist.add from Tyler
-// e.g. progressCtx.classList.add(`css-backdrop-${ajaxCode}`);
 
 // progress bar
 
@@ -96,7 +93,6 @@ function drawPie(ajaxTime, ajaxCode) {
     timePieCtx.dataset.indexNumber = ajaxCode;
     let compStyles = window.getComputedStyle(timePieCtx);
     let customColor = compStyles.getPropertyValue("color");
-    console.log(customColor);
     
     const timePieData = {
         labels: ['years from start', 'years remaining'],
@@ -144,26 +140,42 @@ function drawPie(ajaxTime, ajaxCode) {
 // burndown chart of progress and time
 let burnChart = null;
 
-function drawBurn(ajaxProgress, ajaxTime) {
+function drawBurn(ajaxProgress, ajaxTime, ajaxCode) {
 
     const burnCtx = document.querySelector('#spa-burndown');
+    burnCtx.dataset.indexNumber = ajaxCode;
+    let compStyles = window.getComputedStyle(burnCtx);
+    let customColor = compStyles.getPropertyValue("color");
+    console.log(customColor);
 
     // to build the dotted segment of the actual line (expected up to 2023)
     const skipped = (ctx, value) => ctx.p0.skip || ctx.p1.skip ? value : undefined;
     
     let burnData = {
         datasets: [{
-            label: 'baseline',
-            data: [
-                {x: 15, y: 0}, 
-                {x: 30, y: 100},
-            ] 
-        }, {
             label: 'actual',
             data: [
                 {x: 15, y: 0},
                 {x: 15 + ajaxTime, y: ajaxProgress},
             ],
+            backgroundColor: [
+                customColor
+            ],
+            borderColor: [
+                customColor
+            ]
+        }, {
+            label: 'baseline',
+            data: [
+                {x: 15, y: 0}, 
+                {x: 30, y: 100},
+            ],
+            backgroundColor: [
+                'rgb(0,0,0.2)'
+            ],
+            borderColor: [
+                'rgb(0,0,0.2)'
+            ]
         }, {
             label: 'most recent data',
             data: [
@@ -171,8 +183,11 @@ function drawBurn(ajaxProgress, ajaxTime) {
                 {x: 15 + ajaxTime, y: NaN},
                 {x: 15 + ajaxTime, y: 100}
             ],
+            backgroundColor: ['#a8a7a7'],
+            borderColor: ['#a8a7a7'],
             segment: {
-                borderColor: ctx => skipped(ctx, 'rgb(0,0,0.2)'),
+                // backgroundColor: ctx => skipped(ctx, '#a8a7a7'),
+                // borderColor: ctx => skipped(ctx, '#a8a7a7'),
                 borderDash: ctx => skipped(ctx, [6,6])
             },
             spanGaps: true
@@ -183,17 +198,19 @@ function drawBurn(ajaxProgress, ajaxTime) {
                 {x:23, y: NaN},
                 {x: 23, y: 100}
             ],
+            backgroundColor: ['#e1e1e1'],
+            borderColor: ['#e1e1e1'],
             segment: {
-                borderColor: ctx => skipped(ctx, 'rgb(0,0,0.2)'),
+                // backgroundColor: ctx => skipped(ctx, '#e1e1e1'),
+                // borderColor: ctx => skipped(ctx, '#e1e1e1'),
                 borderDash: ctx => skipped(ctx, [6,6])
             },
             spanGaps: true
         }]
     }
 
-    // config
     const burnConfig = {
-        type: 'scatter',
+        type: 'line',
         data: burnData,
         options: {
             scales: {
@@ -211,6 +228,11 @@ function drawBurn(ajaxProgress, ajaxTime) {
                     }
                 }
             },
+            // elements: {
+            //     line: {
+            //         backgroundColor: customColor
+            //     }
+            // },
             showLine: true,
             plugins: {
                 tooltip: {
@@ -232,6 +254,8 @@ function drawBurn(ajaxProgress, ajaxTime) {
         ];
         burnChart.config._config.data.datasets[1].data[1] = newActual;
         burnChart.config._config.data.datasets[2].data = newMostRecent;
+        burnChart.config._config.data.datasets[1].backgroundColor[0] = customColor;
+        burnChart.config._config.data.datasets[1].borderColor[0] = customColor;
         burnChart.update();
     }
 };
@@ -303,7 +327,7 @@ for (const inputGoal of inputGoals) {
 
             drawPie(progress_data.years_from_start, progress_data.code);
 
-            drawBurn(progress_data.progress, progress_data.years_from_start);
+            drawBurn(progress_data.progress, progress_data.years_from_start, progress_data.code);
 
             updateText(progress_data.code, progress_data.title, 
                 progress_data.description, progress_data.progress, 
