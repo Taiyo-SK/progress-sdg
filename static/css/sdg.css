@@ -1,37 +1,13 @@
-/* css structure */
-.black-border {
-    border: 3px solid black;
-    padding: 1rem;
-    /* margin: .25rem; */
-}
-
-.row {
-    border: 3px solid blue;
-}
-
-h2, h3 {
-    margin-top: 2rem;
-}
-
-.column-box {
-    min-height: 10vh;
-    background-color: floralwhite;
-}
-
-.row-box {
-    min-height: 10vh;
-    background-color:skyblue;
-}
-
-.container-fixed {
-    background-color: #e1e1e1;
-}
-
 /* Main page */
 body {
     font-family: 'Roboto', sans-serif;
     padding-top: 5%;
 }
+
+/* #dashboard-container {
+
+} */
+
 /* navbar */
 .navbar {
     /* border-bottom: 3px solid black; */
@@ -43,6 +19,10 @@ body {
     max-height: 90vh;
     min-width: fit-content;
     overflow-y: scroll;
+}
+
+.list-group-item .card {
+    margin: 5%;
 }
 
 #sdg-letters{
@@ -132,4 +112,34 @@ main[data-index-number="2"] {
 }
 .css-backdrop-17 {
     color: #19486a;
+}
+
+
+/* css structure */
+.col-5 {
+    border: 3px solid black;
+    padding: 1rem;
+    /* margin: .25rem; */
+}
+
+.row {
+    border: 3px solid blue;
+}
+
+h2, h3 {
+    margin-top: 2rem;
+}
+
+.column-box {
+    min-height: 10vh;
+    background-color: floralwhite;
+}
+
+.row-box {
+    min-height: 10vh;
+    background-color:skyblue;
+}
+
+.container-fixed {
+    background-color: #e1e1e1;
 }
