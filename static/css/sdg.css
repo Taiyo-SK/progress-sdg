@@ -28,20 +28,36 @@ h2, h3 {
 }
 
 /* Main page */
-.navbar {
-    border: 3px solid yellowgreen;
-    min-height: 5vh;
-}
-
 body {
     font-family: 'Roboto', sans-serif;
     padding-top: 5%;
 }
+/* navbar */
+.navbar {
+    /* border-bottom: 3px solid black; */
+    min-height: 5vh;
+    background-color: rgb(241, 241, 241);
+}
 
+.dropdown-menu {
+    max-height: 90vh;
+    min-width: fit-content;
+    overflow-y: scroll;
+}
 
-.navbar-brand img{
-    width: 25px;
-    height: 25px;
+#sdg-letters{
+    color: #00adef;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.nav-item {
+    padding-left: 5%;
+}
+
+#sdg-logo {
+    width: 19%;
+    height: 6%;
 }
 
 .goal-icon {

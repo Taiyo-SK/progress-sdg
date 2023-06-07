@@ -19,21 +19,72 @@
       {% block head %} {% endblock %}
     </head>
 
-    <nav class="navbar fixed-top">
-      <a class="navbar-brand" href="/">
-          <img src="/static/icons/sdg_logos/sdg_wheel.png" 
-          class="d-inline-block align-text-top">
-          ProgressSDG
-      </a>
-      <span class="navbar-text">
-      Shedding light on the world's biggest ESG commitments
-      </span>
-      <button type="button" data-bs-toggle="modal" data-bs-target="#overview">
-          Overview
-      </button>
-    </nav>
-    
     <body>
+      <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+          <!-- Navbar toggler for small devices -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <!-- End toggler -->
+  
+          <!-- Project brand -->
+          <a class="navbar-brand" href="/">
+              Progress
+              <span id="sdg-letters">
+              SDG
+              </span>
+          </a>
+          <!-- End brand -->
+  
+          <!-- Navbar content -->
+          <div class="collapse navbar-collapse justify-content-start" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+              <!-- Overview modal button -->
+              <li class="nav-item">
+                <a class="nav-link" href="#" type="button" data-bs-toggle="modal" data-bs-target="#overview">
+                  Overview
+                </a>
+              </li>
+              <!-- End overview -->
+  
+              <!-- List of goals dropdown -->
+              <li class="nav-item">
+                <div class="dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    List of Goals
+                  </a>
+                  <ul class="dropdown-menu">
+                    <!-- Begin goal cards -->
+                    {% for goal in goals %}
+                    <li class="list-group-item">
+                      <div class="card goal-{{ goal.code }}">
+                        <a href="#" id="spa-goal-code" data-index-number="{{ goal.code }}">
+                          <img src="/static/icons/E-WEB-Goal-{{ goal.code }}.png" 
+                          alt="View progress details for sdg {{ goal.code }}: {{ goal.title }}" class="goal-icon"/>
+                        </a>
+                      </div>
+                    </li>
+                    {% endfor %} 
+                    <!-- End goal cards -->
+                  </ul>
+                </div>
+              </li>
+              <!-- End dropdown -->
+            </ul>
+          </div>
+          <!-- End content -->
+
+            <!-- Tag -->
+            <span class="navbar-text">
+              A project tracking progress for the
+            </span>
+            <img src="static/icons/sdg_logos/E_SDG_logo_without_UN_emblem_horizontal_Transparent_WEB.png" 
+              id="sdg-logo" class="d-inline-block align-text-top" 
+              alt="This project supports the Sustainable Development Goals">
+            <!-- End tag -->
+        </div>
+      </nav>
 
       {% block body %} {% endblock %}
     
