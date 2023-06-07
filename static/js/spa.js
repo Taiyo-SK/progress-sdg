@@ -3,7 +3,6 @@
 
 /* Section 1: Page Functions */
 
-const dashContainer = document.querySelector('#dashboard-container');
 
 // css enablement
 // function updateCss(ajaxCode) {
@@ -258,6 +257,7 @@ function drawBurn(ajaxProgress, ajaxTime, ajaxCode) {
 
 // text inputs on page (goal title, description)
 function updateText(ajaxCode, ajaxTitle, ajaxDescription, ajaxProgress, ajaxTime) {
+    let dashCode = document.querySelector('main');
     let goalCode = document.querySelector('#goal-code');
     let navBrandCode = document.querySelector('#sdg-letters');
     let goalTitle = document.querySelector('#goal-title');
@@ -265,6 +265,7 @@ function updateText(ajaxCode, ajaxTitle, ajaxDescription, ajaxProgress, ajaxTime
     let goalProg = document.querySelector('#progress-bar-header');
     let goalTime = document.querySelector('#pie-chart-header');
 
+    dashCode.dataset.indexNumber = ajaxCode;
     goalCode.innerText = ajaxCode;
     navBrandCode.dataset.indexNumber = ajaxCode;
     goalTitle.innerText = ajaxTitle;

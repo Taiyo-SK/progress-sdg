@@ -1,11 +1,14 @@
 /* Main page */
 body {
     font-family: 'Roboto', sans-serif;
+    /* background-color: #fdfdf0; */
     padding-top: 5%;
 }
 
 /* #dashboard-container {
-
+    background: linear-gradient(
+        red 10%, 30%, blue 90%
+    );
 } */
 
 /* navbar */
@@ -81,8 +84,20 @@ aside p {
 
 /* goal-specific details custom */
 
+/* r229, g36, b59 */
 canvas[data-index-number="1"], span[data-index-number="1"] {
     color: #e5243b;
+}
+
+main[data-index-number="1"] {
+    background: linear-gradient(
+    180deg,
+    rgba(229, 36, 59, .15) 0%,
+    rgba(229, 36, 59, .25) 20%,
+    rgba(229, 36, 59, .5) 40%,
+    rgba(229, 36, 59, .75) 60%,
+    rgba(229, 36, 59, 1) 80%
+    );
 }
 
 canvas[data-index-number="2"], span[data-index-number="2"] {
