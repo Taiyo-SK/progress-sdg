@@ -267,6 +267,7 @@ function updateText(ajaxCode, ajaxTitle, ajaxDescription, ajaxProgress, ajaxTime
     let goalDescr = document.querySelector('#goal-description');
     let goalProg = document.querySelector('#progress-bar-header');
     let goalTime = document.querySelector('#pie-chart-header');
+    let lastUpdated = document.querySelector('#last-updated');
 
     dashCode.dataset.indexNumber = ajaxCode;
     goalCode.innerText = ajaxCode;
@@ -279,6 +280,7 @@ function updateText(ajaxCode, ajaxTitle, ajaxDescription, ajaxProgress, ajaxTime
     goalDescr.innerText = ajaxDescription;
     goalProg.innerText = `${Math.round(ajaxProgress)}% complete`;
     goalTime.innerText = `${Math.round(15 - ajaxTime)} years remaining`;
+    lastUpdated.innerText = `The most recent data is approximately ${Math.round(8 - ajaxTime)} years out of date.`;
 };
 
 
