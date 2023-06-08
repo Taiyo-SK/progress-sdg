@@ -73,6 +73,12 @@ aside p {
     width: 100%;
 }
 
+/* Dashboard */
+.section-icon {
+    height: 2rem;
+    width: 2rem;
+}
+
 
 /* Section 1 */
 .section-1 {
@@ -81,11 +87,6 @@ aside p {
     min-height: 20vh;
     max-height: 40vh;
     margin: 2rem;
-}
-
-#section-1-icon {
-    height: 2rem;
-    width: 2rem;
 }
 
 /* Progress bar */
@@ -122,11 +123,6 @@ aside p {
     margin: 2rem;
 }
 
-.section-icon {
-    height: 2rem;
-    width: 2rem;
-}
-
 /* Indicators */
 .indicators-container {
     max-height: 30vh;
@@ -143,12 +139,6 @@ aside p {
     margin: 2rem;
 }
 
-#section-3-icon {
-    height: 2rem;
-    width: 2rem;
-}
-
-
 /* Burndown */
 .burndown-container {
     max-height: 50vh;
@@ -157,59 +147,142 @@ aside p {
 
 /* goal-specific details custom */
 
-/* r229, g36, b59 */
-canvas[data-index-number="1"], span[data-index-number="1"] {
+canvas[data-index-number="1"], 
+span[data-index-number="1"],
+#section-icon-1[data-index-number="1"],
+#section-icon-2a[data-index-number="1"],
+#section-icon-2b[data-index-number="1"],
+#section-icon-3[data-index-number="1"] {
     color: #e5243b;
 }
 
-canvas[data-index-number="2"], span[data-index-number="2"] {
+canvas[data-index-number="2"], 
+span[data-index-number="2"],
+#section-icon-1[data-index-number="2"],
+#section-icon-2a[data-index-number="2"],
+#section-icon-2b[data-index-number="2"],
+#section-icon-3[data-index-number="2"] {
     color: #dda63a;
 }
 
-canvas[data-index-number="3"], span[data-index-number="3"] {
+canvas[data-index-number="3"], 
+span[data-index-number="3"],
+#section-icon-1[data-index-number="3"],
+#section-icon-2a[data-index-number="3"],
+#section-icon-2b[data-index-number="3"],
+#section-icon-3[data-index-number="3"] {
     color: #4c9f38;
 }
 
-canvas[data-index-number="4"], span[data-index-number="4"] {
+canvas[data-index-number="4"], span[data-index-number="4"],
+#section-icon-1[data-index-number="4"],
+#section-icon-2a[data-index-number="4"],
+#section-icon-2b[data-index-number="4"],
+#section-icon-3[data-index-number="4"] {
     color: #c5192d;
 }
-canvas[data-index-number="5"], span[data-index-number="5"] {
+canvas[data-index-number="5"], 
+span[data-index-number="5"],
+#section-icon-1[data-index-number="5"],
+#section-icon-2a[data-index-number="5"],
+#section-icon-2b[data-index-number="5"],
+#section-icon-3[data-index-number="5"] {
     color: #ff3a21;
 }
-canvas[data-index-number="6"], span[data-index-number="6"] {
+canvas[data-index-number="6"], 
+span[data-index-number="6"],
+#section-icon-1[data-index-number="6"],
+#section-icon-2a[data-index-number="6"],
+#section-icon-2b[data-index-number="6"],
+#section-icon-3[data-index-number="6"] {
     color: #26bde2;
 }
-canvas[data-index-number="7"], span[data-index-number="7"] {
+canvas[data-index-number="7"], 
+span[data-index-number="7"],
+#section-icon-1[data-index-number="7"],
+#section-icon-2a[data-index-number="7"],
+#section-icon-2b[data-index-number="7"],
+#section-icon-3[data-index-number="7"] {
     color: #fcc30b;
 }
-canvas[data-index-number="8"], span[data-index-number="8"] {
+canvas[data-index-number="8"], 
+span[data-index-number="8"],
+#section-icon-1[data-index-number="8"],
+#section-icon-2a[data-index-number="8"],
+#section-icon-2b[data-index-number="8"],
+#section-icon-3[data-index-number="8"] {
     color: #a21942;
 }
-canvas[data-index-number="9"], span[data-index-number="9"] {
+canvas[data-index-number="9"], 
+span[data-index-number="9"],
+#section-icon-1[data-index-number="9"],
+#section-icon-2a[data-index-number="9"],
+#section-icon-2b[data-index-number="9"],
+#section-icon-3[data-index-number="9"] {
     color: #fd6925;
 }
-canvas[data-index-number="10"], span[data-index-number="10"] {
+canvas[data-index-number="10"], 
+span[data-index-number="10"],
+#section-icon-1[data-index-number="10"],
+#section-icon-2a[data-index-number="10"],
+#section-icon-2b[data-index-number="10"],
+#section-icon-3[data-index-number="10"] {
     color: #dd1367;
 }
-canvas[data-index-number="11"], span[data-index-number="11"] {
+canvas[data-index-number="11"], 
+span[data-index-number="11"],
+#section-icon-1[data-index-number="11"],
+#section-icon-2a[data-index-number="11"],
+#section-icon-2b[data-index-number="11"],
+#section-icon-3[data-index-number="11"] {
     color: #fd9d24;
 }
-canvas[data-index-number="12"], span[data-index-number="12"] {
+canvas[data-index-number="12"], 
+span[data-index-number="12"],
+#section-icon-1[data-index-number="12"],
+#section-icon-2a[data-index-number="12"],
+#section-icon-2b[data-index-number="12"],
+#section-icon-3[data-index-number="12"] {
     color: #bf8b2e;
 }
-canvas[data-index-number="13"], span[data-index-number="13"] {
+canvas[data-index-number="13"], 
+span[data-index-number="13"],
+#section-icon-1[data-index-number="13"],
+#section-icon-2a[data-index-number="13"],
+#section-icon-2b[data-index-number="13"],
+#section-icon-3[data-index-number="13"] {
     color: #3f7e44;
 }
-canvas[data-index-number="14"], span[data-index-number="14"] {
+canvas[data-index-number="14"], 
+span[data-index-number="14"],
+#section-icon-1[data-index-number="14"],
+#section-icon-2a[data-index-number="14"],
+#section-icon-2b[data-index-number="14"],
+#section-icon-3[data-index-number="14"] {
     color: #0a97d9;
 }
-canvas[data-index-number="15"], span[data-index-number="15"] {
+canvas[data-index-number="15"], 
+span[data-index-number="15"],
+#section-icon-1[data-index-number="15"],
+#section-icon-2a[data-index-number="15"],
+#section-icon-2b[data-index-number="15"],
+#section-icon-3[data-index-number="15"] {
     color: #56c02b;
 }
-canvas[data-index-number="16"], span[data-index-number="16"] {
+canvas[data-index-number="16"], 
+span[data-index-number="16"],
+#section-icon-1[data-index-number="16"],
+#section-icon-2a[data-index-number="16"],
+#section-icon-2b[data-index-number="16"],
+#section-icon-3[data-index-number="16"] {
     color: #00689d;
 }
-canvas[data-index-number="17"], span[data-index-number="17"] {
+canvas[data-index-number="17"], 
+span[data-index-number="17"],
+#section-icon-1[data-index-number="17"],
+#section-icon-2a[data-index-number="17"],
+#section-icon-2b[data-index-number="17"],
+#section-icon-3[data-index-number="17"] {
     color: #19486a;
 }
 

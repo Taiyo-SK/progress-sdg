@@ -145,7 +145,6 @@ function drawBurn(ajaxProgress, ajaxTime, ajaxCode) {
     burnCtx.dataset.indexNumber = ajaxCode;
     let compStyles = window.getComputedStyle(burnCtx);
     let customColor = compStyles.getPropertyValue("color");
-    console.log(customColor);
 
     // to build the dotted segment of the actual line (expected up to 2023)
     const skipped = (ctx, value) => ctx.p0.skip || ctx.p1.skip ? value : undefined;
@@ -260,6 +259,10 @@ function updateText(ajaxCode, ajaxTitle, ajaxDescription, ajaxProgress, ajaxTime
     let dashCode = document.querySelector('main');
     let goalCode = document.querySelector('#goal-code');
     let navBrandCode = document.querySelector('#sdg-letters');
+    let iconCode1 = document.querySelector('#section-icon-1');
+    let iconCode2a = document.querySelector('#section-icon-2a');
+    let iconCode2b = document.querySelector('#section-icon-2b');
+    let iconCode3 = document.querySelector('#section-icon-3');
     let goalTitle = document.querySelector('#goal-title');
     let goalDescr = document.querySelector('#goal-description');
     let goalProg = document.querySelector('#progress-bar-header');
@@ -268,6 +271,10 @@ function updateText(ajaxCode, ajaxTitle, ajaxDescription, ajaxProgress, ajaxTime
     dashCode.dataset.indexNumber = ajaxCode;
     goalCode.innerText = ajaxCode;
     navBrandCode.dataset.indexNumber = ajaxCode;
+    iconCode1.dataset.indexNumber = ajaxCode;
+    iconCode2a.dataset.indexNumber = ajaxCode;
+    iconCode2b.dataset.indexNumber = ajaxCode;
+    iconCode3.dataset.indexNumber = ajaxCode;
     goalTitle.innerText = ajaxTitle;
     goalDescr.innerText = ajaxDescription;
     goalProg.innerText = `${Math.round(ajaxProgress)}% complete`;
