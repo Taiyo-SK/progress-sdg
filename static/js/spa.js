@@ -40,6 +40,7 @@ function drawProgress(ajaxProgress, ajaxCode) {
             type: 'bar',
             data: progressData,
             options: {
+                maintainAspectRatio: false,
                 indexAxis: 'y',
                 scales: {
                     x: {
@@ -113,6 +114,7 @@ function drawPie(ajaxTime, ajaxCode) {
         type: 'pie',
         data: timePieData,
         options: {
+            maintainAspectRatio: false,
             plugins: {
                 legend: {
                     display: false
@@ -211,6 +213,7 @@ function drawBurn(ajaxProgress, ajaxTime, ajaxCode) {
         type: 'line',
         data: burnData,
         options: {
+            maintainAspectRatio: false,
             scales: {
                 x: {
                     type: 'linear',
@@ -280,7 +283,7 @@ function updateText(ajaxCode, ajaxTitle, ajaxDescription, ajaxProgress, ajaxTime
     goalDescr.innerText = ajaxDescription;
     goalProg.innerText = `${Math.round(ajaxProgress)}% complete`;
     goalTime.innerText = `${Math.round(15 - ajaxTime)} years remaining`;
-    lastUpdated.innerText = `The most recent data is approximately ${Math.round(8 - ajaxTime)} years out of date.`;
+    lastUpdated.innerText = `Data last provided in ${Math.round(2015 + ajaxTime)}.`;
 };
 
 

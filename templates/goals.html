@@ -8,7 +8,7 @@
 
 {% block body %}
 
-<div class="container-fluid">
+<div class="container-md">
     <!-- Begin overview modal -->
     <div class="modal fade" id="overview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -65,8 +65,9 @@
     <main id="dashboard-container" class="dashboard-container" data-index-number="">
 
         <!-- Begin section 1: summary with header and both progress charts -->
-        <div class="row section-1 justify-content-center align-items-stretch">
-            <div class="col-4">
+        <div class="row section-1">
+            <!-- header -->
+            <div id="dashboard-header" class="col-md-3">
                 <h1 class="fs-3">
                     <svg id="section-icon-1" data-index-number="" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="section-icon bi bi-journal-bookmark-fill" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M6 1h6v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8V1z"/>
@@ -77,17 +78,19 @@
                 </h1>
                 <block id="goal-title"></block>
             </div>
-            <div class="col-4">
+            <!-- progress bar -->
+            <div class="col-md-3">
                 <div id="progress-bar-container">
-                    <canvas id="progress-bar" class="summary-chart progress-bar" data-index-number=""></canvas>
-                    <block id="progress-bar-header"></block>
+                    <canvas id="progress-bar" class="summary-chart" data-index-number=""></canvas>
                 </div>
+                <span id="progress-bar-header">test</span>
             </div>
-            <div class="col-4">
+            <!-- pie chart -->
+            <div class="col-md-3">
                 <div id="pie-chart-container">
                     <canvas id="spa-time-pie" class="summary-chart" data-index-number=""></canvas>
-                    <block id="pie-chart-header"></block>
                 </div>
+                <span id="pie-chart-header">test</span>
             </div>
         </div>
         <!-- End section 1 -->
@@ -128,7 +131,7 @@
 
         <!-- Begin section 3: data burndown assessment -->
         <div class="row section-3 justify-content-center">
-            <div class="col-6">
+            <div class="col-4">
                 <h2 class="fs-3">
                     <svg id="section-icon-3" data-index-number="" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="section-icon bi bi-clipboard2-pulse-fill" viewBox="0 0 16 16">
                         <path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5Z"/>
@@ -149,11 +152,11 @@
                     <p>
                         The two dotted lines (data last provided and 2023 reference)
                         show the gap between the last progress update and 2023.
+                        <span id="last-updated"></span>
                     </p>
-                    <span id="last-updated"></span>
                 </section>
             </div>
-            <div class="col-6">
+            <div class="col-8">
                 <div class="burndown-container">
                     <canvas id="spa-burndown"></canvas>
                 </div>
