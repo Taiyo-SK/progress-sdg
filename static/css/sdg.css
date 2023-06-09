@@ -23,7 +23,7 @@ h1, h2, h3 {
 /* navbar */
 /*#region*/
 .navbar {
-    /* border-bottom: 3px solid black; */
+    border-bottom: 1px solid gray;
     background-color: white;
 }
 
