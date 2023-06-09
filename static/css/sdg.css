@@ -57,10 +57,6 @@ h1, h2, h3 {
     height: 6%;
 }
 
-.modal-section .col-4 {
-    border: 3px solid black;
-    max-height: 20vh;
-}
 /*#endregion */
 
 /* Overview modal */
@@ -74,8 +70,8 @@ aside p {
     font-size: larger;
 }
 
-#modal-sdg-logo {
-    max-width: 10vh;
+#sdg-logo-wrapper {
+    max-width: 20vh;
     max-height: 20vh; 
 }
 
