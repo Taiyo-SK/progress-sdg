@@ -1,19 +1,6 @@
 'use strict';
 
-
-/* Section 1: Page Functions */
-
-
-// css enablement
-// function updateCss(ajaxCode) {
-//     dashContainer.dataset.indexNumber = ajaxCode;
-
-//     let compStyles = window.getComputedStyle(dashContainer);
-//     let customColor = compStyles.getPropertyValue("color");
-//     console.log(customColor);
-// };
-
-// progress bar
+/* Section 1: Functions */
 
 let progressBar = null;
 
@@ -283,7 +270,7 @@ function updateText(ajaxCode, ajaxTitle, ajaxDescription, ajaxProgress, ajaxTime
     goalDescr.innerText = ajaxDescription;
     goalProg.innerText = `${Math.round(ajaxProgress)}% complete`;
     goalTime.innerText = `${Math.round(15 - ajaxTime)} years remaining`;
-    lastUpdated.innerText = `Data last provided in ${Math.round(2015 + ajaxTime)}.`;
+    lastUpdated.innerText = `For this SDG, data was last provided in ${Math.round(2015 + ajaxTime)}.`;
 };
 
 

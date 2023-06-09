@@ -8,7 +8,7 @@
 
 {% block body %}
 
-<div class="container-md">
+<div class="container-fluid">
     <!-- Begin overview modal -->
     <div class="modal fade" id="overview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -22,8 +22,9 @@
                     <div class="modal-body">
                         <div class="container-fluid">
                             <p class="row">
-                                ProgressSDG is a tool to track completion of the 
-                                Sustainable Development Goals (SDGs) from the United Nations. 
+                                ProgressSDG is a tool to track completion of 
+                                the Sustainable Development Goals 
+                                (SDGs) from the United Nations. 
                             </p>
                             <div class="row modal-section justify-content-center align-items-center">
                                 <div class="col-4 text-center">
@@ -34,9 +35,11 @@
                                     </aside>
                                 </div>
                                 <div class="col-4">
+                                    <a href="https://unstats.un.org/sdgs/">
                                     <img id="modal-sdg-logo"
-                                    src="static/icons/sdg_logos/E_SDG_logo_without_UN_emblem_Square_Transparent_WEB.png" 
-                                    alt="The logo for the Sustainable Development Goals.">
+                                        src="static/icons/sdg_logos/E_SDG_logo_without_UN_emblem_Square_Transparent_WEB.png" 
+                                        alt="The logo for the Sustainable Development Goals.">
+                                    </a>
                                 </div>
                                 <div class="col-4 text-center">
                                     <aside>
@@ -57,17 +60,16 @@
             <div class="modal-footer">
             </div>
           </div>
-        </div>
-      </div>
+    </div>
     <!-- End overview modal -->
 
     <!-- Begin dashboard -->
     <main id="dashboard-container" class="dashboard-container" data-index-number="">
 
         <!-- Begin section 1: summary with header and both progress charts -->
-        <div class="row section-1">
+        <div class="row section-1 justify-content-start">
             <!-- header -->
-            <div id="dashboard-header" class="col-md-3">
+            <div id="dashboard-header" class="col-md-4">
                 <h1 class="fs-3">
                     <svg id="section-icon-1" data-index-number="" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="section-icon bi bi-journal-bookmark-fill" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M6 1h6v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8V1z"/>
@@ -76,28 +78,28 @@
                     </svg>
                     Summary for SDG <span id="goal-code"></span>
                 </h1>
-                <block id="goal-title"></block>
+                <span id="goal-title"></span>
             </div>
             <!-- progress bar -->
             <div class="col-md-3">
                 <div id="progress-bar-container">
                     <canvas id="progress-bar" class="summary-chart" data-index-number=""></canvas>
                 </div>
-                <span id="progress-bar-header">test</span>
+                <span id="progress-bar-header"></span>
             </div>
             <!-- pie chart -->
-            <div class="col-md-3">
+            <div class="col-md-3 offset-md-1">
                 <div id="pie-chart-container">
                     <canvas id="spa-time-pie" class="summary-chart" data-index-number=""></canvas>
                 </div>
-                <span id="pie-chart-header">test</span>
+                <span id="pie-chart-header"></span>
             </div>
         </div>
         <!-- End section 1 -->
 
         <!-- Begin section 2: description and indicators -->
-        <div class="row section-2 justify-content-center">
-            <div class="col-6">
+        <div class="row section-2">
+            <div class="col-md-4">
                 <h2 class="fs-3">
                     <svg id="section-icon-2a" data-index-number="" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="section-icon bi bi-file-text-fill" viewBox="0 0 16 16">
                         <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1z"/>
@@ -106,7 +108,7 @@
                 </h2>
                 <p id="goal-description"></p>
             </div>
-            <div class="col-6">
+            <div class="col-md-5 offset-md-1">
                 <h2 class="fs-3">
                     <svg id="section-icon-2b" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="section-icon bi bi-card-list" viewBox="0 0 16 16">
                         <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
@@ -130,8 +132,9 @@
         <!-- End section 2 -->
 
         <!-- Begin section 3: data burndown assessment -->
-        <div class="row section-3 justify-content-center">
-            <div class="col-4">
+        <div class="row section-3">
+            <!-- Chart guide -->
+            <div class="col-md-3">
                 <h2 class="fs-3">
                     <svg id="section-icon-3" data-index-number="" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="section-icon bi bi-clipboard2-pulse-fill" viewBox="0 0 16 16">
                         <path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5Z"/>
@@ -156,7 +159,8 @@
                     </p>
                 </section>
             </div>
-            <div class="col-8">
+            <!-- End chart guide -->
+            <div class="col-md-8 offset-md-1">
                 <div class="burndown-container">
                     <canvas id="spa-burndown"></canvas>
                 </div>
@@ -166,7 +170,6 @@
         <br>
     </main>
     <!-- End dashboard -->
-
 </div>
 {% endblock %}
 

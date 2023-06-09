@@ -5,16 +5,25 @@ body {
     padding-top: 5%;
 }
 
+h1, h2, h3 {
+    padding-bottom: 0.5rem;
+}
 .section-icon {
     height: 2rem;
     width: 2rem;
 }
 
+#footer {
+    background-color: #4d4d4d;
+    color: white;
+    min-height: 7vh;
+}
+
+
 /* navbar */
 /*#region*/
 .navbar {
     /* border-bottom: 3px solid black; */
-    min-height: 5vh;
     background-color: white;
 }
 
@@ -80,44 +89,32 @@ aside p {
 /*#region*/
 .section-1 {
     background-color: white;
-    border: 3px solid blue;
-    height: 20vh;
-    margin: 2rem;
+    height: 25vh;
     padding: 1rem;
+    margin: 2rem;
 }
 
 #dashboard-header {
-    border: 1px solid black;
     height: 100%;
 }
 
 #progress-bar-container {
-    border: 1px solid black;
     height: 70%;
 }
 
-#progress-bar-header {
-    border: 1px solid black;
-}
-
 #pie-chart-container {
-    border: 1px solid black;
     width: 70%;
     height: 70%;
 }
 
-#pie-chart-header {
-    border: 1px solid black;
-}
 /*#endregion*/
 
 /* Section 2 */
 /*#region*/
 .section-2 {
     background-color: white;
-    border: 3px solid green;
-    min-height: 20vh;
-    max-height: 40vh;
+    height: 40vh;
+    padding: 1rem;
     margin: 2rem;
 }
 
@@ -132,15 +129,15 @@ aside p {
 /*#region*/
 .section-3 {
     background-color: white;
-    border: 3px solid red;
-    min-height: 20vh;
-    max-height: 80vh;
+    height: 60vh;
+    padding: 1rem;
     margin: 2rem;
 }
 
 /* Burndown */
 .burndown-container {
-    max-height: 50vh;
+    height: 60vh;
+    padding-bottom: 2rem;
 }
 /*#endregion*/
 
@@ -285,13 +282,3 @@ span[data-index-number="17"],
     color: #19486a;
 }
 /*#endregion*/
-
-/* css structure */
-
-h1, h2, h3 {
-    margin-top: 1rem;
-}
-
-.container-fixed {
-    background-color: #e1e1e1;
-}
