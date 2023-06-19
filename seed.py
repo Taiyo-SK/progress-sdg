@@ -3,7 +3,6 @@
 import os
 import json
 import api_requests 
-## decided it was better to save api output as static json file
 
 import crud
 import model
@@ -17,8 +16,6 @@ model.db.create_all()
 
 
 ### 1. Goals
-
-# need to load it in
 
 with open('static/data/goals.json') as f:
     goals_list = json.loads(f.read())
@@ -57,6 +54,7 @@ for entry in progress_list:
 
 model.db.session.add_all(progress_in_db) 
 model.db.session.commit()
+
 
 ### 3. Indicators and progress data
 
