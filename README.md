@@ -17,7 +17,7 @@ ProgressSDG is a tool for viewing global progress on the United Nations Sustaina
 3. Assessment section illustrating whether or not an SDG's progress data is on-track and up-to-date (chart.js)
 
 ## Screenshots
-![alt text](https://github.com/Taiyo-SK/progressSDG/static/screenshots/overview.png "page overview")
-![alt text](https://github.com/Taiyo-SK/progressSDG/static/screenshots/summary.png "summary section")
-![alt text](https://github.com/Taiyo-SK/progressSDG/static/screenshots/details.png "details section")
-![alt text](https://github.com/Taiyo-SK/progressSDG/static/screenshots/assessment.png "assessment section")
+![alt text](https://github.com/Taiyo-SK/progressSDG/blob/main/static/screenshots/overview.png "page overview")
+![alt text](https://github.com/Taiyo-SK/progressSDG/blob/main/static/screenshots/summary.png "summary section")
+![alt text](https://github.com/Taiyo-SK/progressSDG/blob/main/static/screenshots/details.png "details section")
+![alt text](https://github.com/Taiyo-SK/progressSDG/blob/main/static/screenshots/assessment.png "assessment section")
