@@ -244,7 +244,7 @@ function drawBurn(ajaxProgress, ajaxTime, ajaxCode) {
 };
 
 
-// text inputs on page (goal title, description)
+// text inputs on page
 function updateText(ajaxCode, ajaxTitle, ajaxDescription, ajaxProgress, ajaxTime) {
     let dashCode = document.querySelector('main');
     let goalCode = document.querySelector('#goal-code');
