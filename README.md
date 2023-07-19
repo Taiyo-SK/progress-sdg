@@ -27,12 +27,12 @@ The Summary section displays the SDG title, progress completion and number of ye
 
 ### 2. Details section
 
- The Details section shows the longform SDG description and a list of its associated indicators. The indicators are specific metrics that comprise the larger SDG, and include their own progress percentages. The list of indicators are contained in a Bootstrap table.
+ The Details section shows the SDG description and a list of its associated indicators. The indicators are specific metrics that comprise the larger SDG, and include their own progress percentages. The list of indicators are contained in a Bootstrap table.
 
 ![alt text](https://github.com/Taiyo-SK/progressSDG/blob/main/static/screenshots/details.png "details section")
 
 ### 3. Assessment section
 
-The Assessment section illustrates whether or not an SDG's progress data is on-track and up-to-date. It uses a custom burndown-inspired chart. The two solid lines illustrate if progress is on target, while the two dotted lines show the gap between the last progress update and 2023.
+The Assessment section illustrates whether or not an SDG's progress data is on-track and up-to-date. It uses a custom, burndown-inspired chart. The two solid lines illustrate if progress is on target, while the two dotted lines show the gap between the last progress update and 2023.
 
 ![alt text](https://github.com/Taiyo-SK/progressSDG/blob/main/static/screenshots/assessment.png "assessment section")
