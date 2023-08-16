@@ -30,7 +30,7 @@ h1, h2, h3 {
 
 .dropdown-menu {
     max-height: 90vh;
-    min-width: fit-content;
+    /* min-width: 100vh; */
     overflow-y: scroll;
 }
 
