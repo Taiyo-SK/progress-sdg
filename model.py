@@ -1,4 +1,4 @@
-"""Models for SDG progress app."""
+"""Models for ProgressSDG app."""
 
 from flask_sqlalchemy import SQLAlchemy
 

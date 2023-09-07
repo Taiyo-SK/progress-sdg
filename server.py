@@ -1,4 +1,4 @@
-"""Server for SDGs progress app."""
+"""Server for ProgressSDG app."""
 
 from flask import Flask, render_template, request, flash, session, redirect, jsonify
 from jinja2 import StrictUndefined

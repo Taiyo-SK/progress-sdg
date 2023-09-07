@@ -1,4 +1,4 @@
-"""CRUD functions for SDG progress app."""
+"""CRUD functions for ProgressSDG app."""
 
 from model import db, Goal, Progress, Indicator, connect_to_db
 
@@ -46,40 +46,10 @@ def get_goals():
     return Goal.query.all()
 
 
-def get_progress():
-    """Return all progress for all goals."""
-
-    return Progress.query.all()
-
-
 def get_progress_by_goal(code):
     """Return the most up to date progress for a specific goal."""
 
     return Progress.query.filter_by(code=code).one()
-
-
-def get_goal(code):
-    """Return a specific goal."""
-
-    return Goal.query.filter_by(code=code).one()
-
-
-def get_indicators():
-    """Return all indicators."""
-
-    return Indicator.query.all()
-
-
-def get_indicators_by_goal(code):
-    """Return all indicators for a given goal."""
-
-    return Indicator.query.filter_by(goal_code=code).all()
-
-
-def get_details_by_indicator(id):
-    """Return the most up to date progress and description for a specific indicator."""
-
-    return Indicator.query.filter_by(id=id).one()
 
 
 if __name__ == '__main__':
