@@ -22,7 +22,6 @@ def view_goals():
     """View all SDGs. Acts as homepage."""
 
     goals = crud.get_goals()
-    # progress = crud.get_progress() # might not need? trying to fix the goal cards
 
     return render_template('goals.html', goals=goals) #progress=progress
 
@@ -47,10 +46,6 @@ def get_goal_progress_data(code):
     up until progress data was last provided.
     """
 
-    # 1. Get progress data using crud function
-    ## This is returned as SQLA object--need to turn it into a dictionary
-    ## Turn Python dict into JSON
-
     progress_data = crud.get_progress_by_goal(code)
 
     indicators_sqla_objs = progress_data.goal.indicator
@@ -62,9 +57,6 @@ def get_goal_progress_data(code):
                             }
 
         indicators_list.append(indicator_dict)
-
-    # {2.1.1: Prevalence of undernourishment, 69.171}
-
 
     return jsonify(
             code = progress_data.code,
