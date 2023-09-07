@@ -14,31 +14,18 @@ app.jinja_env.undefined = StrictUndefined
 
 ### Routes and views
 
-### Goals/homepage
-
-
 @app.route('/')
 def view_goals():
-    """View all SDGs. Acts as homepage."""
+    """Load the spa. View a list of all SDGs via the navbar dropdown."""
 
     goals = crud.get_goals()
 
-    return render_template('goals.html', goals=goals) #progress=progress
-
-
-@app.route('/goals/<code>')
-def show_goal(code):
-    """Show details on a particular SDG."""
-
-    progress = crud.get_progress_by_goal(code)
-    indicators = crud.get_indicators_by_goal(code)
-
-    return render_template('goal_details.html', progress=progress, indicators=indicators)
+    return render_template('goals.html', goals=goals)
 
 
 @app.route('/progress_data.json/<code>')
 def get_goal_progress_data(code):
-    """Get progress data for a specific SDG.
+    """Fetch progress data for a specific SDG.
 
     Progress is defined as a percentage.
 
@@ -66,38 +53,6 @@ def get_goal_progress_data(code):
             ytd = progress_data.years_to_date,
             indicators = indicators_list,
             )
-
-
-### Indicators
-
-
-@app.route('/indicators')
-def view_indicators():
-    """View all SDG indicators."""
-
-    indicators = crud.get_indicators()
-
-    return render_template('indicators.html', indicators=indicators)
-
-
-@app.route('/indicators/<id>')
-def show_indicator(id):
-    """Show progress and description of a specific indicator."""
-
-    ind_details = crud.get_details_by_indicator(id)
-
-    return render_template('indicator_details.html', ind_details=ind_details)
-
-
-@app.route('/indicator_data.json/<id>')
-def get_indicator_progress_data(id):
-    """Get progress data for a specific indicator.
-    
-    Progress is defined as a percentage."""
-
-    progress_data = crud.get_details_by_indicator(id)
-
-    return jsonify(progress=progress_data.progress)
 
 
 if __name__ == '__main__':
